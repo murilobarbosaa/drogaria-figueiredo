@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drogaria Figueiredo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_API&callback=initMap" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-container container">
+        <div class="logo">
+          <h1>Drogaria Figueiredo</h1>
+        </div>
+        <button class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#instagram">Promoções</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#location">Localização</a></li>
+          <li><a href="#hours">Horários</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <h2>Sua saúde é nossa prioridade</h2>
+        <p>Há anos cuidando da saúde e bem-estar das famílias de João Pessoa com produtos de qualidade e atendimento personalizado.</p>
+        <a href="#contact" class="btn">Entre em contato</a>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Sobre Nós</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-image">
+            <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="400" fill="#f5f5f5"></rect>
+              <circle cx="300" cy="200" r="150" fill="#275faa" opacity="0.8"></circle>
+              <path d="M300,120 L300,280 M220,200 L380,200" stroke="#ffffff" stroke-width="40" stroke-linecap="round"></path>
+              <circle cx="300" cy="200" r="60" fill="#f2ca30"></circle>
+            </svg>
+          </div>
+          <div class="about-text">
+            <h3>Drogaria Figueiredo</h3>
+            <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
+            <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
+            <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 08h às 19h, sempre prontos para atendê-lo com excelência.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="instagram-promos" id="instagram">
+      <div class="container instagram-container">
+        <div class="section-title">
+          <h2>Promoções em Destaque</h2>
+        </div>
+        <div class="instagram-grid">
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">DF</div>
+              <div class="post-username">drogariafigueiredo</div>
+            </div>
+            <div class="post-image">
+              <span class="post-tag">Oferta</span>
+              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="400" fill="#f0f0f0"></rect>
+                <rect x="50" y="100" width="300" height="200" rx="10" fill="#275faa"></rect>
+                <circle cx="200" cy="200" r="80" fill="#f2ca30"></circle>
+                <text x="200" y="190" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#275faa">30% OFF</text>
+                <text x="200" y="220" font-family="Arial" font-size="16" text-anchor="middle" fill="#275faa">Vitaminas</text>
+              </svg>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">247 curtidas</div>
+              <p class="post-caption"><strong>drogariafigueiredo</strong> Aproveite 30% de desconto em todas as vitaminas! Promoção válida até o fim da semana. #saúde #vitaminas #promoção</p>
+              <p class="post-time">2 horas atrás</p>
+            </div>
+          </div>
+
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">DF</div>
+              <div class="post-username">drogariafigueiredo</div>
+            </div>
+            <div class="post-image">
+              <span class="post-tag">Destaque</span>
+              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="400" fill="#f5f5f5"></rect>
+                <rect x="50" y="50" width="300" height="300" rx="10" fill="#e6f2ff"></rect>
+                <rect x="100" y="100" width="200" height="200" rx="5" fill="#275faa"></rect>
+                <rect x="110" y="110" width="180" height="180" rx="3" fill="white"></rect>
+                <rect x="130" y="130" width="140" height="80" fill="#f2ca30"></rect>
+                <text x="200" y="175" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle">GENÉRICOS</text>
+                <circle cx="300" cy="100" r="50" fill="#e74c3c"></circle>
+                <text x="300" y="90" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="white">50%</text>
+                <text x="300" y="115" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">OFF</text>
+                <text x="200" y="250" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#275faa">SUPER PROMOÇÃO</text>
+                <text x="200" y="280" font-family="Arial" font-size="16" text-anchor="middle" fill="#555">Todos os medicamentos genéricos</text>
+              </svg>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">583 curtidas</div>
+              <p class="post-caption"><strong>drogariafigueiredo</strong> 🔥 SUPER PROMOÇÃO! 🔥 50% de desconto em TODOS os medicamentos genéricos! Válido apenas nesta semana. Consulte condições nas lojas. #promoção #genéricos #economia #saúde</p>
+              <p class="post-time">1 dia atrás</p>
+            </div>
+          </div>
+
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">DF</div>
+              <div class="post-username">drogariafigueiredo</div>
+            </div>
+            <div class="post-image">
+              <span class="post-tag">Novidade</span>
+              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="400" fill="#f0f0f0"></rect>
+                <rect x="50" y="100" width="300" height="200" rx="10" fill="#f8e8ff"></rect>
+                <circle cx="150" cy="200" r="60" fill="#e6ccff"></circle>
+                <circle cx="150" cy="200" r="50" fill="#d9b3ff"></circle>
+                <rect x="220" y="150" width="100" height="100" rx="5" fill="#d9b3ff"></rect>
+                <rect x="230" y="160" width="80" height="80" rx="3" fill="#cc99ff"></rect>
+                <text x="200" y="300" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#9966cc">Linha de Cosméticos</text>
+                <text x="200" y="325" font-family="Arial" font-size="16" text-anchor="middle" fill="#9966cc">20% OFF</text>
+              </svg>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">312 curtidas</div>
+              <p class="post-caption"><strong>drogariafigueiredo</strong> Nova linha de cosméticos com 20% de desconto na primeira compra! Venha conhecer! #beleza #cosméticos #novidades</p>
+              <p class="post-time">3 dias atrás</p>
+            </div>
+          </div>
+        </div>
+        <div class="instagram-cta">
+          <a href="https://www.instagram.com/drogariafigueiredo" class="instagram-btn" target="_blank"> <i class="fab fa-instagram"></i> Siga-nos no Instagram </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nossos Serviços</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-pills"></i></div>
+            <h3>Medicamentos</h3>
+            <p>Ampla variedade de medicamentos de referência, genéricos e similares para atender todas as suas necessidades.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-leaf"></i></div>
+            <h3>Fitoterápicos</h3>
+            <p>Produtos naturais e fitoterápicos para quem busca alternativas para cuidar da saúde.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-pump-soap"></i></div>
+            <h3>Cosméticos</h3>
+            <p>Linha completa de produtos de beleza, higiene pessoal e perfumaria das melhores marcas.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-truck"></i></div>
+            <h3>Entrega Rápida</h3>
+            <p>Serviço de entrega no mesmo dia para sua comodidade. Receba seus produtos sem sair de casa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location" id="location">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nossas Unidades</h2>
+        </div>
+        <div class="location-container">
+          <div class="map-container">
+            <div id="map">
+              <div style="height: 100%; width: 100%">
+                <div style="overflow: hidden"></div>
+              </div>
+            </div>
+          </div>
+          <div class="locations-list">
+            <div class="location-item active" data-lat="-7.1576" data-lng="-34.8609" data-name="Valentina">
+              <h3>Unidade Valentina</h3>
+              <p>R. Comerciante José Miranda de Araújo, 575</p>
+              <p>Tel: (83) 3231-4500</p>
+            </div>
+            <div class="location-item" data-lat="-7.1496" data-lng="-34.8770" data-name="Mangabeira">
+              <h3>Unidade Mangabeira</h3>
+              <p>Av. Josefa Taveira, 1839</p>
+              <p>Tel: (83) 3238-2200</p>
+            </div>
+            <div class="location-item" data-lat="-7.1191" data-lng="-34.8330" data-name="Manaíra">
+              <h3>Unidade Manaíra</h3>
+              <p>Av. Edson Ramalho, 890</p>
+              <p>Tel: (83) 3247-6600</p>
+            </div>
+            <div class="location-item" data-lat="-7.1150" data-lng="-34.8456" data-name="Centro">
+              <h3>Unidade Centro</h3>
+              <p>Av. General Osório, 420</p>
+              <p>Tel: (83) 3214-3300</p>
+            </div>
+            <div class="location-item" data-lat="-7.1334" data-lng="-34.8229" data-name="Cabo Branco">
+              <h3>Unidade Cabo Branco</h3>
+              <p>Av. Cabo Branco, 1570</p>
+              <p>Tel: (83) 3226-7700</p>
+            </div>
+            <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários">
+              <h3>Unidade Bancários</h3>
+              <p>Rua Bancário Sérgio Guerra, 450</p>
+              <p>Tel: (83) 3235-8800</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hours" id="hours">
+      <div class="container">
+        <div class="section-title">
+          <h2>Horário de Funcionamento</h2>
+        </div>
+        <div class="hours-container">
+          <div class="hours-cards">
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Segunda</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status">Aberto</div>
+            </div>
+
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Terça</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status" style="background-color: rgb(255, 235, 238); color: rgb(231, 76, 60)">Fechado</div>
+            </div>
+
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Quarta</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status">Aberto</div>
+            </div>
+
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Quinta</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status">Aberto</div>
+            </div>
+
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Sexta</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status">Aberto</div>
+            </div>
+
+            <div class="hours-card">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Sábado</div>
+              <div class="hours-time">07:00 - 22:00</div>
+              <div class="hours-status">Aberto</div>
+            </div>
+
+            <div class="hours-card weekend">
+              <div class="hours-icon">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="day-name">Domingo</div>
+              <div class="hours-time">08:00 - 19:00</div>
+              <div class="hours-status" style="background-color: #fff3e0; color: #e67e22">Horário Especial</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>O que dizem nossos clientes</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Ótimos preços e variedade de produtos. Sempre encontro o que preciso!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MR</div>
+              <div>
+                <div class="testimonial-name">Maria Rodrigues</div>
+                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Maravilhoso atendimento! Os funcionários são muito atenciosos e prestativos."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JS</div>
+              <div>
+                <div class="testimonial-name">João Silva</div>
+                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Entrega rápida e eficiente. Sempre recebo meus medicamentos no mesmo dia!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">CA</div>
+              <div>
+                <div class="testimonial-name">Carlos Almeida</div>
+                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Entre em Contato</h2>
+        </div>
+        <div class="contact-container">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <h3>Como podemos ajudar?</h3>
+              <p>Estamos à disposição para atender suas necessidades e esclarecer suas dúvidas.</p>
+              <div class="contact-methods">
+                <a href="tel:+558332314500" class="contact-method">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div class="contact-text">(83) 3231-4500 <span>Atendimento 24h</span></div>
+                </a>
+                <a href="https://wa.me/5583999999999" class="contact-method">
+                  <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <div class="contact-text">(83) 99999-9999 <span>Resposta rápida</span></div>
+                </a>
+                <a href="mailto:contato@drogariafigueiredo.com.br" class="contact-method">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-text">
+                    contato@drogariafigueiredo.com.br
+                    <span>Para informações e sugestões</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="contact-cta">
+              <div class="contact-image">
+                <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="150" cy="100" r="80" fill="rgba(255,255,255,0.1)"></circle>
+                  <circle cx="150" cy="100" r="60" fill="rgba(255,255,255,0.15)"></circle>
+                  <circle cx="150" cy="100" r="40" fill="#f2ca30"></circle>
+                  <path d="M150,80 L150,120 M130,100 L170,100" stroke="#275faa" stroke-width="8" stroke-linecap="round"></path>
+                </svg>
+              </div>
+              <a href="https://wa.me/5583999999999" class="contact-btn" target="_blank"> <i class="fab fa-whatsapp"></i> Fale conosco pelo WhatsApp </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-container">
+        <div class="footer-col footer-info">
+          <h3 class="footer-logo">Drogaria Figueiredo</h3>
+          <p class="footer-desc">Cuidando da sua saúde com a confiança e a tradição que você merece.</p>
+          <div class="footer-health-info">
+            <h5>Informação Importante</h5>
+            <p>Medicamentos podem causar efeitos indesejados. Evite a automedicação: informe-se com o farmacêutico.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Links Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#services">Nossos Serviços</a></li>
+            <li><a href="#location">Nossas Lojas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <span class="footer-contact-text">Principal: Valentina, João Pessoa - PB</span>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <span class="footer-contact-text">(83) 3231-4500</span>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <span class="footer-contact-text">contato@drogariafigueiredo.com.br</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Baixe nosso App</h4>
+          <div class="footer-apps">
+            <a href="#" class="footer-app">
+              <i class="fab fa-google-play footer-app-icon"></i>
+              <div class="footer-app-text">Google Play <span>Disponível em</span></div>
+            </a>
+            <a href="#" class="footer-app">
+              <i class="fab fa-apple footer-app-icon"></i>
+              <div class="footer-app-text">App Store <span>Baixe na</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Drogaria Figueiredo. Todos os direitos reservados.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Política de Privacidade</a>
+        </div>
+        <div class="footer-payment">
+          <div class="footer-payment-title">Formas de Pagamento:</div>
+          <div class="footer-payment-icons">
+            <div class="footer-payment-icon">
+              <i class="fab fa-cc-visa"></i>
+            </div>
+            <div class="footer-payment-icon">
+              <i class="fab fa-cc-mastercard"></i>
+            </div>
+            <div class="footer-payment-icon">
+              <i class="fab fa-cc-amex"></i>
+            </div>
+            <div class="footer-payment-icon">
+              <i class="fas fa-barcode"></i>
+            </div>
+            <div class="footer-payment-icon"><i class="fab fa-pix"></i></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="floating-contact">
+      <a href="https://wa.me/5583999999999" class="floating-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
