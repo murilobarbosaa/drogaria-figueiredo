@@ -207,7 +207,7 @@ section {
   max-width: 500px;
 }
 
-.about-image svg {
+.about-image img {
   width: 100%;
   height: auto;
   display: block;
@@ -827,7 +827,7 @@ footer {
 }
 
 .footer-app {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #1d1d1f;
   border-radius: 8px;
   padding: 10px 15px;
   display: flex;
