@@ -633,99 +633,65 @@ section {
   color: var(--secondary);
 }
 
-.contact {
+#ofertas-whatsapp {
   background-color: var(--primary);
+  overflow: hidden;
+}
+
+#ofertas-whatsapp .section-title h2 {
   color: var(--white);
-  padding: 80px 0;
 }
 
-.contact .section-title h2 {
-  color: var(--white);
-}
-
-.contact-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-
-.contact-info h3 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.contact-info p {
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-.contact-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.contact-method {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-decoration: none;
-  color: var(--white);
-  transition: var(--transition);
-}
-
-.contact-method:hover {
-  transform: translateX(5px);
-}
-
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  color: var(--secondary);
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-
-.contact-method:hover .contact-icon {
-  background-color: var(--secondary);
-  color: var(--primary);
-}
-
-.contact-text {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.contact-text span {
-  display: block;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-top: 3px;
-}
-
-.contact-cta {
+.ofertas-whatsapp-content {
   text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: whatsFadeInUp 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-delay: 0.2s;
 }
 
-.contact-btn {
+#ofertas-whatsapp p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--white);
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.btn-ofertas-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   background-color: var(--secondary);
   color: var(--dark-gray);
-  padding: 15px 30px;
+  padding: 12px 30px;
   border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.btn-ofertas-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-ofertas-whatsapp i {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+#ofertas-whatsapp .aviso-privacidade {
+  display: block;
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.8;
 }
 
 footer {
@@ -929,6 +895,13 @@ footer {
 .floating-btn:hover {
   transform: scale(1.1);
   background-color: #128c7e;
+}
+
+@keyframes whatsFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 992px) {
