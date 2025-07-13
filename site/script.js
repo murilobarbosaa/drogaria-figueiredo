@@ -38,50 +38,58 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function updateHoursStatus() {
-    const now = new Date();
-    const dayOfWeek = now.getDay();
-    const currentTime = now.getHours() * 100 + now.getMinutes();
+    const statusTextoEl = document.getElementById("horario-status-texto");
+    const statusDetalheEl = document.getElementById("horario-status-detalhe");
 
-    const hoursCards = document.querySelectorAll(".hours-card");
+    if (!statusTextoEl || !statusDetalheEl) {
+      return;
+    }
 
-    hoursCards.forEach((card) => {
-      const statusEl = card.querySelector(".hours-status");
-      if (!statusEl) return;
+    const agora = new Date();
+    const diaSemana = agora.getDay();
+    const horaAtual = agora.getHours() * 100 + agora.getMinutes();
 
-      let isOpen = false;
-      let isToday = false;
+    let estaAberto = false;
+    let textoDetalhe = "";
 
-      if (!card.classList.contains("weekend")) {
-        if (dayOfWeek >= 1 && dayOfWeek <= 6) {
-          isToday = true;
-          if (currentTime >= 700 && currentTime < 2200) {
-            isOpen = true;
-          }
-        }
+    if (diaSemana >= 1 && diaSemana <= 6) {
+      if (horaAtual >= 700 && horaAtual < 2200) {
+        estaAberto = true;
+        textoDetalhe = "Fecharemos às 22:00";
       } else {
-        if (dayOfWeek === 0) {
-          isToday = true;
-          if (currentTime >= 800 && currentTime < 1900) {
-            isOpen = true;
-          }
-        }
-      }
-
-      if (isToday) {
-        if (isOpen) {
-          statusEl.textContent = "Aberto agora";
-          statusEl.style.backgroundColor = "#e6f7e6";
-          statusEl.style.color = "#2ecc71";
+        estaAberto = false;
+        if (horaAtual < 700) {
+          textoDetalhe = "Abriremos hoje às 07:00";
         } else {
-          statusEl.textContent = "Fechado agora";
-          statusEl.style.backgroundColor = "#ffebee";
-          statusEl.style.color = "#e74c3c";
+          if (diaSemana === 6) {
+            textoDetalhe = "Abriremos amanhã às 08:00";
+          } else {
+            textoDetalhe = "Abriremos amanhã às 07:00";
+          }
         }
-      } else {
-        statusEl.textContent = "";
-        statusEl.style.backgroundColor = "transparent";
       }
-    });
+    } else if (diaSemana === 0) {
+      if (horaAtual >= 800 && horaAtual < 1900) {
+        estaAberto = true;
+        textoDetalhe = "Fecharemos às 19:00";
+      } else {
+        estaAberto = false;
+        if (horaAtual < 800) {
+          textoDetalhe = "Abriremos hoje às 08:00";
+        } else {
+          textoDetalhe = "Abriremos amanhã às 07:00";
+        }
+      }
+    }
+
+    if (estaAberto) {
+      statusTextoEl.textContent = "Estamos Abertos";
+      statusTextoEl.className = "horario-status-aberto";
+    } else {
+      statusTextoEl.textContent = "Estamos Fechados";
+      statusTextoEl.className = "horario-status-fechado";
+    }
+    statusDetalheEl.textContent = textoDetalhe;
   }
 
   document.querySelectorAll(".post-action.heart").forEach((heart) => {
