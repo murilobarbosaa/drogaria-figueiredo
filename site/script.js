@@ -197,3 +197,27 @@ window.addEventListener("load", function () {
     }
   }, 3000);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slide");
+  const track = document.querySelector(".carousel-slides");
+  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+  const prevBtn = document.querySelector(".carousel-btn--prev");
+  const nextBtn = document.querySelector(".carousel-btn--next");
+  let current = 0;
+  const total = slides.length;
+
+  function goTo(index) {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot) => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+    current = index;
+  }
+
+  prevBtn.addEventListener("click", () => goTo((current - 1 + total) % total));
+  nextBtn.addEventListener("click", () => goTo((current + 1) % total));
+  dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.slide))));
+
+  // autoplay a cada 5 segundos
+  setInterval(() => goTo((current + 1) % total), 5000);
+});
