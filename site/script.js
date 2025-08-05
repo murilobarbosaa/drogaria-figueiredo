@@ -1,204 +1,91 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
+function initHamburgerMenu() {
+  const btn = document.getElementById("hamburger");
+  const nav = document.getElementById("nav-menu");
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      hamburger.innerHTML = navMenu.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
+  if (!btn || !nav) return;
 
-    document.querySelectorAll(".nav-menu a").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (navMenu.classList.contains("active")) {
-          navMenu.classList.remove("active");
-          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-      });
+  btn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    btn.innerHTML = nav.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+
+  document.querySelectorAll(".nav-menu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (nav.classList.contains("active")) {
+        nav.classList.remove("active");
+        btn.innerHTML = '<i class="fas fa-bars"></i>';
+      }
     });
-  }
+  });
+}
+
+function initSmoothScroll() {
+  const headerHeight = document.querySelector("header").offsetHeight;
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetEl = document.querySelector(anchor.getAttribute("href"));
+      if (!targetEl) return;
 
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+      const topPos = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
-      if (targetElement) {
-        const headerHeight = document.querySelector("header").offsetHeight;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
+      window.scrollTo({ top: topPos, behavior: "smooth" });
     });
   });
+}
 
-  function updateHoursStatus() {
-    const statusTextoEl = document.getElementById("horario-status-texto");
-    const statusDetalheEl = document.getElementById("horario-status-detalhe");
-
-    if (!statusTextoEl || !statusDetalheEl) {
-      return;
-    }
-
-    const agora = new Date();
-    const diaSemana = agora.getDay();
-    const horaAtual = agora.getHours() * 100 + agora.getMinutes();
-
-    let estaAberto = false;
-    let textoDetalhe = "";
-
-    if (diaSemana >= 1 && diaSemana <= 6) {
-      if (horaAtual >= 700 && horaAtual < 2200) {
-        estaAberto = true;
-        textoDetalhe = "Fecharemos às 22:00";
-      } else {
-        estaAberto = false;
-        if (horaAtual < 700) {
-          textoDetalhe = "Abriremos hoje às 07:00";
-        } else {
-          if (diaSemana === 6) {
-            textoDetalhe = "Abriremos amanhã às 08:00";
-          } else {
-            textoDetalhe = "Abriremos amanhã às 07:00";
-          }
-        }
-      }
-    } else if (diaSemana === 0) {
-      if (horaAtual >= 800 && horaAtual < 1900) {
-        estaAberto = true;
-        textoDetalhe = "Fecharemos às 19:00";
-      } else {
-        estaAberto = false;
-        if (horaAtual < 800) {
-          textoDetalhe = "Abriremos hoje às 08:00";
-        } else {
-          textoDetalhe = "Abriremos amanhã às 07:00";
-        }
-      }
-    }
-
-    if (estaAberto) {
-      statusTextoEl.textContent = "Estamos Abertos";
-      statusTextoEl.className = "horario-status-aberto";
-    } else {
-      statusTextoEl.textContent = "Estamos Fechados";
-      statusTextoEl.className = "horario-status-fechado";
-    }
-    statusDetalheEl.textContent = textoDetalhe;
-  }
-
+function initLikeButtons() {
   document.querySelectorAll(".post-action.heart").forEach((heart) => {
-    heart.addEventListener("click", function () {
-      const likesElement = this.closest(".post-content").querySelector(".post-likes");
-      if (!likesElement) return;
+    heart.addEventListener("click", () => {
+      const likesEl = heart.closest(".post-content")?.querySelector(".post-likes");
+      if (!likesEl) return;
 
-      let currentLikes = parseInt(likesElement.textContent) || 0;
+      let count = parseInt(likesEl.textContent) || 0;
+      heart.classList.toggle("fas");
+      heart.classList.toggle("far");
 
-      this.classList.toggle("fas");
-      this.classList.toggle("far");
-
-      if (this.classList.contains("fas")) {
-        this.style.color = "#e74c3c";
-        likesElement.textContent = currentLikes + 1 + " curtidas";
+      if (heart.classList.contains("fas")) {
+        heart.style.color = "#e74c3c";
+        likesEl.textContent = `${count + 1} curtidas`;
       } else {
-        this.style.color = "#555";
-        likesElement.textContent = currentLikes - 1 + " curtidas";
+        heart.style.color = "#555";
+        likesEl.textContent = `${count - 1} curtidas`;
       }
-    });
-  });
-
-  updateHoursStatus();
-  setInterval(updateHoursStatus, 60000);
-});
-
-let map;
-let markers = {};
-
-function initMap() {
-  const locationItems = document.querySelectorAll(".location-item");
-  if (locationItems.length === 0) return;
-
-  const firstLocation = locationItems[0];
-  const defaultLatLng = {
-    lat: parseFloat(firstLocation.getAttribute("data-lat")),
-    lng: parseFloat(firstLocation.getAttribute("data-lng")),
-  };
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
-    center: defaultLatLng,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: false,
-    styles: [
-      {
-        featureType: "poi.business",
-        stylers: [{ visibility: "off" }],
-      },
-      {
-        featureType: "road",
-        elementType: "labels.icon",
-        stylers: [{ visibility: "off" }],
-      },
-    ],
-  });
-
-  locationItems.forEach((item) => {
-    const lat = parseFloat(item.getAttribute("data-lat"));
-    const lng = parseFloat(item.getAttribute("data-lng"));
-    const name = item.getAttribute("data-name");
-
-    const marker = new google.maps.Marker({
-      position: { lat, lng },
-      map: map,
-      title: `Drogaria Figueiredo - ${name}`,
-      animation: google.maps.Animation.DROP,
-    });
-
-    markers[name] = marker;
-
-    item.addEventListener("click", () => {
-      locationItems.forEach((i) => i.classList.remove("active"));
-      item.classList.add("active");
-
-      map.setCenter({ lat, lng });
-      map.setZoom(16);
-      toggleBounce(marker);
     });
   });
 }
 
-function toggleBounce(marker) {
-  for (const key in markers) {
-    markers[key].setAnimation(null);
-  }
-  marker.setAnimation(google.maps.Animation.BOUNCE);
-  setTimeout(() => marker.setAnimation(null), 1400);
-}
+function initLocationStatus() {
+  document.querySelectorAll(".location-item").forEach((card) => {
+    const now = new Date();
+    const day = now.getDay();
 
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    if (typeof google === "undefined" || typeof google.maps === "undefined") {
-      const mapContainer = document.getElementById("map");
-      if (mapContainer) {
-        mapContainer.innerHTML = `
-          <div style="height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px; background-color: #f5f5f5;">
-            <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-            <h3 style="color: #555;">Não foi possível carregar o mapa</h3>
-            <p style="color: #777;">Por favor, verifique sua conexão com a internet.</p>
-          </div>
-        `;
-      }
+    const hoursData = day === 0 ? card.dataset.sundayHours : card.dataset.weekdayHours;
+    if (!hoursData) return;
+
+    const [openStr, closeStr] = hoursData.split("-");
+    const [hOpen, mOpen] = openStr.split(":").map(Number);
+    const [hClose, mClose] = closeStr.split(":").map(Number);
+
+    const minutesNow = now.getHours() * 60 + now.getMinutes();
+    const minutesOpen = hOpen * 60 + mOpen;
+    const minutesClose = hClose * 60 + mClose;
+
+    const statusEl = card.querySelector(".hours-status");
+    if (!statusEl) return;
+
+    if (minutesNow >= minutesOpen && minutesNow < minutesClose) {
+      statusEl.textContent = "Aberto";
+      statusEl.classList.add("open");
+    } else {
+      statusEl.textContent = "Fechado";
+      statusEl.classList.add("closed");
     }
-  }, 3000);
-});
+  });
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+function initCarousel() {
   const slides = document.querySelectorAll(".slide");
   const track = document.querySelector(".carousel-slides");
   const dots = Array.from(document.querySelectorAll(".carousel-dot"));
@@ -206,18 +93,103 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".carousel-btn--next");
   let current = 0;
   const total = slides.length;
+  if (!track || !dots.length) return;
 
-  function goTo(index) {
+  const goTo = (index) => {
     track.style.transform = `translateX(-${index * 100}%)`;
     dots.forEach((dot) => dot.classList.remove("active"));
     dots[index].classList.add("active");
     current = index;
-  }
+  };
 
-  prevBtn.addEventListener("click", () => goTo((current - 1 + total) % total));
-  nextBtn.addEventListener("click", () => goTo((current + 1) % total));
+  prevBtn?.addEventListener("click", () => goTo((current - 1 + total) % total));
+  nextBtn?.addEventListener("click", () => goTo((current + 1) % total));
   dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.slide))));
 
-  // autoplay a cada 5 segundos
   setInterval(() => goTo((current + 1) % total), 5000);
+}
+
+let map;
+const markers = {};
+
+window.initMap = () => {
+  const items = document.querySelectorAll(".location-item");
+  if (!items.length) return;
+
+  const { lat, lng } = items[0].dataset;
+  const defaultPos = { lat: +lat, lng: +lng };
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: defaultPos,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    styles: [
+      { featureType: "poi.business", stylers: [{ visibility: "off" }] },
+      { featureType: "road", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+    ],
+  });
+
+  items.forEach((item) => {
+    const position = {
+      lat: +item.dataset.lat,
+      lng: +item.dataset.lng,
+    };
+    const title = `Drogaria Figueiredo - ${item.dataset.name}`;
+    const marker = new google.maps.Marker({
+      map,
+      position,
+      title,
+      animation: google.maps.Animation.DROP,
+    });
+    markers[item.dataset.name] = marker;
+
+    item.addEventListener("click", () => {
+      items.forEach((i) => i.classList.remove("active"));
+      item.classList.add("active");
+      map.setCenter(position);
+      map.setZoom(16);
+      toggleBounce(marker);
+    });
+  });
+};
+
+function toggleBounce(activeMarker) {
+  Object.values(markers).forEach((m) => m.setAnimation(null));
+  activeMarker.setAnimation(google.maps.Animation.BOUNCE);
+  setTimeout(() => activeMarker.setAnimation(null), 1400);
+}
+
+function handleMapError() {
+  const container = document.getElementById("map");
+  if (!container || window.google?.maps) return;
+
+  container.innerHTML = `
+    <div style="
+      height:100%;display:flex;
+      align-items:center;justify-content:center;
+      flex-direction:column;text-align:center;
+      padding:20px;background:#f5f5f5;
+    ">
+      <i class="fas fa-map-marker-alt"
+         style="font-size:3rem;color:#ccc;margin-bottom:20px;">
+      </i>
+      <h3 style="color:#555;">Não foi possível carregar o mapa</h3>
+      <p style="color:#777;">
+        Por favor, verifique sua conexão com a internet.
+      </p>
+    </div>`;
+}
+
+window.addEventListener("load", () => {
+  setTimeout(handleMapError, 3000);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  initHamburgerMenu();
+  initSmoothScroll();
+  initLikeButtons();
+  initLocationStatus();
+  initCarousel();
 });

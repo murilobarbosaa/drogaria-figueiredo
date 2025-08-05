@@ -204,68 +204,91 @@
         </div>
         <div class="location-container">
           <div class="map-container">
-            <div id="map">
-              <div style="height: 100%; width: 100%">
-                <div style="overflow: hidden"></div>
-              </div>
-            </div>
+            <div id="map"></div>
           </div>
           <div class="locations-list">
-            <div class="location-item active" data-lat="-7.1576" data-lng="-34.8609" data-name="Valentina">
-              <h3>Unidade Valentina</h3>
-              <p>R. Comerciante José Miranda de Araújo, 575</p>
-              <p>Tel: (83) 3231-4500</p>
+            <div class="location-item active" data-lat="-7.1576" data-lng="-34.8609" data-name="Valentina" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Valentina</h3>
+                <p class="unit-phone">Tel: (83) 3231-4500</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
             </div>
-            <div class="location-item" data-lat="-7.1496" data-lng="-34.8770" data-name="Mangabeira">
-              <h3>Unidade Mangabeira</h3>
-              <p>Av. Josefa Taveira, 1839</p>
-              <p>Tel: (83) 3238-2200</p>
-            </div>
-            <div class="location-item" data-lat="-7.1191" data-lng="-34.8330" data-name="Manaíra">
-              <h3>Unidade Manaíra</h3>
-              <p>Av. Edson Ramalho, 890</p>
-              <p>Tel: (83) 3247-6600</p>
-            </div>
-            <div class="location-item" data-lat="-7.1150" data-lng="-34.8456" data-name="Centro">
-              <h3>Unidade Centro</h3>
-              <p>Av. General Osório, 420</p>
-              <p>Tel: (83) 3214-3300</p>
-            </div>
-            <div class="location-item" data-lat="-7.1334" data-lng="-34.8229" data-name="Cabo Branco">
-              <h3>Unidade Cabo Branco</h3>
-              <p>Av. Cabo Branco, 1570</p>
-              <p>Tel: (83) 3226-7700</p>
-            </div>
-            <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários">
-              <h3>Unidade Bancários</h3>
-              <p>Rua Bancário Sérgio Guerra, 450</p>
-              <p>Tel: (83) 3235-8800</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="hours" id="hours">
-      <div class="container">
-        <div class="section-title">
-          <h2>Horário de Funcionamento</h2>
-        </div>
-
-        <div class="horario-moderno-container">
-          <div id="horario-status-wrapper">
-            <h3 id="horario-status-texto"></h3>
-            <p id="horario-status-detalhe"></p>
-          </div>
-
-          <div class="horario-agrupado">
-            <div class="horario-linha">
-              <span><i class="fas fa-calendar-alt"></i> Segunda a Sábado</span>
-              <span class="horario-hora">07:00 - 22:00</span>
+            <div class="location-item" data-lat="-7.1496" data-lng="-34.8770" data-name="Mangabeira" data-weekday-hours="08:00-20:00" data-sunday-hours="09:00-18:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Mangabeira</h3>
+                <p class="unit-phone">Tel: (83) 3238-2200</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 08:00 : 20:00</li>
+                    <li><strong>Dom:</strong> 09:00 - 18:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
             </div>
-            <div class="horario-linha">
-              <span><i class="fas fa-calendar-day"></i> Domingo</span>
-              <span class="horario-hora">08:00 - 19:00</span>
+
+            <div class="location-item" data-lat="-7.1191" data-lng="-34.8330" data-name="Manaíra" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Manaíra</h3>
+                <p class="unit-phone">Tel: (83) 3247-6600</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-item" data-lat="-7.1150" data-lng="-34.8456" data-name="Centro" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Centro</h3>
+                <p class="unit-phone">Tel: (83) 3214-3300</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-item" data-lat="-7.1334" data-lng="-34.8229" data-name="Cabo Branco" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Cabo Branco</h3>
+                <p class="unit-phone">Tel: (83) 3226-7700</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+              <div class="unit-info">
+                <h3 class="unit-name">Unidade Bancários</h3>
+                <p class="unit-phone">Tel: (83) 3235-8800</p>
+                <div class="unit-hours-wrapper">
+                  <ul class="hours-list">
+                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                  </ul>
+                  <span class="hours-status"></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
