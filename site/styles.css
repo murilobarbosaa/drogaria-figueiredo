@@ -219,7 +219,7 @@ section {
 }
 
 .carousel {
-  background-color: #f7f7f7;
+  background-color: white;
 }
 
 .carousel-container {
@@ -308,7 +308,7 @@ section {
 }
 
 .about {
-  background-color: var(--white);
+  background-color: var(--light-gray);
 }
 
 .about-content {
@@ -638,6 +638,11 @@ section {
   color: #c0392b;
 }
 
+.testimonials {
+  margin-bottom: 60px;
+  background-color: var(--light-gray);
+}
+
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -645,7 +650,7 @@ section {
 }
 
 .testimonial-card {
-  background-color: var(--light-gray);
+  background-color: var(--white);
   border-radius: 10px;
   padding: 30px;
   box-shadow: var(--shadow);
