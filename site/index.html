@@ -9,7 +9,17 @@
     <link href="styles.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com; style-src  'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src   'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+  default-src 'self';
+  img-src 'self' data: https:;
+  script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://unpkg.com;
+  style-src  'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+  font-src   'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+  connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com;
+  frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    />
     <meta content="nosniff" http-equiv="X-Content-Type-Options" />
     <meta content="strict-origin-when-cross-origin" name="Referrer-Policy" />
     <meta content="geolocation=(), microphone=(), camera=()" http-equiv="Permissions-Policy" />
@@ -197,6 +207,34 @@
             <button class="carousel-dot" data-slide="1"></button>
             <button class="carousel-dot" data-slide="2"></button>
           </div>
+        </div>
+      </section>
+
+      <section class="benefits-modern" aria-label="Vantagens da Drogaria Figueiredo">
+        <div class="benefits-modern__wrap" role="list">
+          <article class="benefit" role="listitem" tabindex="0">
+            <div class="benefit__circle"><i data-lucide="credit-card" aria-hidden="true"></i></div>
+            <h3 class="benefit__title">Parcele em 5x</h3>
+            <p class="benefit__desc">No cartão</p>
+          </article>
+
+          <article class="benefit" role="listitem" tabindex="0">
+            <div class="benefit__circle"><i data-lucide="truck" aria-hidden="true"></i></div>
+            <h3 class="benefit__title">Entrega grátis</h3>
+            <p class="benefit__desc">A partir de R$15</p>
+          </article>
+
+          <article class="benefit" role="listitem" tabindex="0">
+            <div class="benefit__circle"><i data-lucide="qr-code" aria-hidden="true"></i></div>
+            <h3 class="benefit__title">Pague com Pix</h3>
+            <p class="benefit__desc">Rápido e seguro</p>
+          </article>
+
+          <article class="benefit" role="listitem" tabindex="0">
+            <div class="benefit__circle"><i data-lucide="percent" aria-hidden="true"></i></div>
+            <h3 class="benefit__title">Genéricos até 90%</h3>
+            <p class="benefit__desc">De desconto</p>
+          </article>
         </div>
       </section>
 
@@ -608,5 +646,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
   </body>
 </html>
