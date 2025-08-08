@@ -1,16 +1,145 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Drogaria Figueiredo</title>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/threads.svg" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBliEnMz-jYzBeozgxRTgmpWmv136hqooo&callback=initMap" defer></script>
+    <link href="./assets/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="styles.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com; style-src  'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src   'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" />
+    <meta content="nosniff" http-equiv="X-Content-Type-Options" />
+    <meta content="strict-origin-when-cross-origin" name="Referrer-Policy" />
+    <meta content="geolocation=(), microphone=(), camera=()" http-equiv="Permissions-Policy" />
+
+    <meta content="Farmácia com entrega rápida, descontos em medicamentos e atendimento humanizado. Confira promoções e encontre a unidade mais próxima." name="description" />
+    <link href="https://www.drogariafigueiredo.com.br/" rel="canonical" />
+
+    <meta content="Drogaria Figueiredo" property="og:title" />
+    <meta content="Entrega rápida, descontos e serviços farmacêuticos. Encontre a unidade mais próxima." property="og:description" />
+    <meta content="website" property="og:type" />
+    <meta content="https://www.drogariafigueiredo.com.br/" property="og:url" />
+    <meta content="https://www.drogariafigueiredo.com.br/assets/interior.jpg" property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="Drogaria Figueiredo" name="twitter:title" />
+    <meta content="Entrega rápida, descontos e serviços farmacêuticos. Encontre a unidade mais próxima." name="twitter:description" />
+    <meta content="https://www.drogariafigueiredo.com.br/assets/og-image.jpg" name="twitter:image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.drogariafigueiredo.com.br/#org",
+            "name": "Drogaria Figueiredo",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "logo": "https://www.drogariafigueiredo.com.br/assets/og-image.jpg"
+          },
+
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#valentina",
+            "name": "Drogaria Figueiredo - Valentina",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1576", "longitude": "-34.8609" },
+            "hasMap": "https://www.google.com/maps?q=-7.1576,-34.8609"
+          },
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#mangabeira",
+            "name": "Drogaria Figueiredo - Mangabeira",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1496", "longitude": "-34.8770" },
+            "hasMap": "https://www.google.com/maps?q=-7.1496,-34.8770"
+          },
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#manaira",
+            "name": "Drogaria Figueiredo - Manaíra",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1191", "longitude": "-34.8330" },
+            "hasMap": "https://www.google.com/maps?q=-7.1191,-34.8330"
+          },
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#centro",
+            "name": "Drogaria Figueiredo - Centro",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1150", "longitude": "-34.8456" },
+            "hasMap": "https://www.google.com/maps?q=-7.1150,-34.8456"
+          },
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#cabo-branco",
+            "name": "Drogaria Figueiredo - Cabo Branco",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1334", "longitude": "-34.8229" },
+            "hasMap": "https://www.google.com/maps?q=-7.1334,-34.8229"
+          },
+          {
+            "@type": "Pharmacy",
+            "@id": "https://www.drogariafigueiredo.com.br/#bancarios",
+            "name": "Drogaria Figueiredo - Bancários",
+            "url": "https://www.drogariafigueiredo.com.br/",
+            "branchOf": { "@id": "https://www.drogariafigueiredo.com.br/#org" },
+            "telephone": "+558332378355",
+            "geo": { "@type": "GeoCoordinates", "latitude": "-7.1642", "longitude": "-34.8340" },
+            "hasMap": "https://www.google.com/maps?q=-7.1642,-34.8340"
+          }
+        ]
+      }
+    </script>
+    <script defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBliEnMz-jYzBeozgxRTgmpWmv136hqooo&amp;callback=initMap"></script>
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .skip-link:focus {
+        left: 1rem;
+        top: 1rem;
+        width: auto;
+        height: auto;
+        background: #000;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        z-index: 10000;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
+    <h1 class="sr-only">Drogaria Figueiredo — Saúde, Promoções e Atendimento</h1>
     <header>
       <div class="header-container container">
         <div class="logo">
@@ -35,324 +164,326 @@
       </div>
     </header>
 
-    <section class="hero" id="home">
-      <div class="hero-overlay"></div>
-      <div class="container">
-        <h2>Sua saúde é nossa prioridade</h2>
-        <p>Há anos cuidando da saúde e bem-estar das famílias de João Pessoa com produtos de qualidade e atendimento personalizado.</p>
-        <a href="#ofertas-whatsapp" class="btn">Entre em contato</a>
-      </div>
-    </section>
-
-    <section class="carousel" id="home-carousel">
-      <div class="section-title">
-        <h2>Promoções em Destaque</h2>
-      </div>
-      <div class="carousel-container">
-        <div class="carousel-slides">
-          <div class="slide"><img src="./assets/banner 1.png" alt="Promoção 1" /></div>
-          <div class="slide"><img src="./assets/banner 2.png" alt="Promoção 2" /></div>
-          <div class="slide"><img src="./assets/banner 3.png" alt="Promoção 3" /></div>
+    <main id="main-content">
+      <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <h2>Sua saúde é nossa prioridade</h2>
+          <p>Há anos cuidando da saúde e bem-estar das famílias de João Pessoa com produtos de qualidade e atendimento personalizado.</p>
+          <a href="#ofertas-whatsapp" class="btn">Entre em contato</a>
         </div>
+      </section>
 
-        <button class="carousel-btn carousel-btn--prev">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="carousel-btn carousel-btn--next">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <div class="carousel-dots">
-          <button class="carousel-dot active" data-slide="0"></button>
-          <button class="carousel-dot" data-slide="1"></button>
-          <button class="carousel-dot" data-slide="2"></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="container">
+      <section class="carousel" id="home-carousel">
         <div class="section-title">
-          <h2>Sobre Nós</h2>
+          <h2>Promoções em Destaque</h2>
         </div>
-        <div class="about-content">
-          <div class="about-image">
-            <img src="./assets/interior.png" alt="" />
-          </div>
-          <div class="about-text">
-            <h3>Drogaria Figueiredo</h3>
-            <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
-            <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
-            <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 08h às 19h, sempre prontos para atendê-lo com excelência.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="instagram-promos" id="instagram">
-      <div class="container instagram-container">
-        <div class="section-title">
-          <h2>Instagram</h2>
-        </div>
-        <div class="instagram-grid">
-          <div class="instagram-post">
-            <div class="post-header">
-              <div class="post-avatar">
-                <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
-              </div>
-              <div class="post-username">drogariafigueiredonovomilenio</div>
-            </div>
-            <div class="post-image">
-              <img src="./assets/post1.png" alt="post1" />
-            </div>
-            <div class="post-content">
-              <div class="post-actions">
-                <i class="far fa-heart post-action heart"></i>
-                <i class="fas fa-comment post-action"></i>
-                <i class="fas fa-paper-plane post-action"></i>
-              </div>
-              <div class="post-likes">2247 curtidas</div>
-              <p class="post-caption">
-                <strong>drogariafigueiredonovomilenio</strong><br />Precisando de medicamentos no conforto da sua casa? Na Drogaria Figueiredo é assim: pediu, chegou!<br />
-                🛵💨 Conte com nosso serviço de entrega rápida e receba tudo o que precisa sem sair de casa.
-              </p>
-            </div>
+        <div class="carousel-container">
+          <div class="carousel-slides">
+            <div class="slide"><img src="./assets/banner 1.png" alt="Promoção 1" /></div>
+            <div class="slide"><img src="./assets/banner 2.png" alt="Promoção 2" /></div>
+            <div class="slide"><img src="./assets/banner 3.png" alt="Promoção 3" /></div>
           </div>
 
-          <div class="instagram-post">
-            <div class="post-header">
-              <div class="post-avatar">
-                <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
-              </div>
-              <div class="post-username">drogariafigueiredonovomilenio</div>
-            </div>
-            <div class="post-image">
-              <img src="./assets/post2.png" alt="post2" />
-            </div>
-            <div class="post-content">
-              <div class="post-actions">
-                <i class="far fa-heart post-action heart"></i>
-                <i class="fas fa-comment post-action"></i>
-                <i class="fas fa-paper-plane post-action"></i>
-              </div>
-              <div class="post-likes">1583 curtidas</div>
-              <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Sua saúde é nossa prioridade! ✨<br />Além da variedade de medicamentos, oferecemos serviços ambulatoriais completos para cuidar de você e sua família. Nossos profissionais estão prontos para te atender com segurança e qualidade.</p>
-            </div>
-          </div>
+          <button class="carousel-btn carousel-btn--prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-btn--next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
 
-          <div class="instagram-post">
-            <div class="post-header">
-              <div class="post-avatar">
-                <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
-              </div>
-              <div class="post-username">drogariafigueiredonovomilenio</div>
-            </div>
-            <div class="post-image">
-              <img src="./assets/post3.png" alt="post3" />
-            </div>
-            <div class="post-content">
-              <div class="post-actions">
-                <i class="far fa-heart post-action heart"></i>
-                <i class="fas fa-comment post-action"></i>
-                <i class="fas fa-paper-plane post-action"></i>
-              </div>
-              <div class="post-likes">1312 curtidas</div>
-              <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Você sabe onde nos encontrar? 🤔 Nossa Loja 04 está localizada na Rua Ceará do Brandão Rocha, 1022 - Novo Milênio! 📍 Venha nos fazer uma visita, conhecer nossas promoções e contar com o melhor atendimento da região. Estamos te esperando!</p>
-            </div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
           </div>
         </div>
-        <div class="instagram-cta">
-          <a href="https://www.instagram.com/drogariafigueiredonovomilenio" class="instagram-btn" target="_blank"> <i class="fab fa-instagram"></i> Siga-nos no Instagram </a>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="services" id="services">
-      <div class="container">
-        <div class="section-title">
-          <h2>Nossos Serviços</h2>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-pills"></i></div>
-            <h3>Medicamentosos</h3>
-            <p>Ampla variedade de medicamentos de referência, genéricos e similares para atender todas as suas necessidades.</p>
+      <section class="about" id="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>Sobre Nós</h2>
           </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-leaf"></i></div>
-            <h3>Fitoterápicos</h3>
-            <p>Produtos naturais e fitoterápicos para quem busca alternativas para cuidar da saúde.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-pump-soap"></i></div>
-            <h3>Cosméticos</h3>
-            <p>Linha completa de produtos de beleza, higiene pessoal e perfumaria das melhores marcas.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-truck"></i></div>
-            <h3>Entrega Rápida</h3>
-            <p>Serviço de entrega no mesmo dia para sua comodidade. Receba seus produtos sem sair de casa.</p>
+          <div class="about-content">
+            <div class="about-image">
+              <img src="./assets/interior.png" alt="" />
+            </div>
+            <div class="about-text">
+              <h3>Drogaria Figueiredo</h3>
+              <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
+              <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
+              <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 08h às 19h, sempre prontos para atendê-lo com excelência.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="location" id="location">
-      <div class="container">
-        <div class="section-title">
-          <h2>Nossas Unidades</h2>
-        </div>
-        <div class="location-container">
-          <div class="map-container">
-            <div id="map"></div>
+      <section class="instagram-promos" id="instagram">
+        <div class="container instagram-container">
+          <div class="section-title">
+            <h2>Instagram</h2>
           </div>
-          <div class="locations-list">
-            <div class="location-item active" data-lat="-7.1576" data-lng="-34.8609" data-name="Valentina" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Valentina</h3>
-                <p class="unit-phone">Tel: (83) 3231-4500</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
-                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
+          <div class="instagram-grid">
+            <div class="instagram-post">
+              <div class="post-header">
+                <div class="post-avatar">
+                  <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
+                </div>
+                <div class="post-username">drogariafigueiredonovomilenio</div>
+              </div>
+              <div class="post-image">
+                <img src="./assets/post1.png" alt="post1" />
+              </div>
+              <div class="post-content">
+                <div class="post-actions">
+                  <i class="far fa-heart post-action heart"></i>
+                  <i class="fas fa-comment post-action"></i>
+                  <i class="fas fa-paper-plane post-action"></i>
+                </div>
+                <div class="post-likes">2247 curtidas</div>
+                <p class="post-caption">
+                  <strong>drogariafigueiredonovomilenio</strong><br />Precisando de medicamentos no conforto da sua casa? Na Drogaria Figueiredo é assim: pediu, chegou!<br />
+                  🛵💨 Conte com nosso serviço de entrega rápida e receba tudo o que precisa sem sair de casa.
+                </p>
+              </div>
+            </div>
+
+            <div class="instagram-post">
+              <div class="post-header">
+                <div class="post-avatar">
+                  <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
+                </div>
+                <div class="post-username">drogariafigueiredonovomilenio</div>
+              </div>
+              <div class="post-image">
+                <img src="./assets/post2.png" alt="post2" />
+              </div>
+              <div class="post-content">
+                <div class="post-actions">
+                  <i class="far fa-heart post-action heart"></i>
+                  <i class="fas fa-comment post-action"></i>
+                  <i class="fas fa-paper-plane post-action"></i>
+                </div>
+                <div class="post-likes">1583 curtidas</div>
+                <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Sua saúde é nossa prioridade! ✨<br />Além da variedade de medicamentos, oferecemos serviços ambulatoriais completos para cuidar de você e sua família. Nossos profissionais estão prontos para te atender com segurança e qualidade.</p>
+              </div>
+            </div>
+
+            <div class="instagram-post">
+              <div class="post-header">
+                <div class="post-avatar">
+                  <img src="./assets/logo-instagram.png" alt="Logo Instagram" />
+                </div>
+                <div class="post-username">drogariafigueiredonovomilenio</div>
+              </div>
+              <div class="post-image">
+                <img src="./assets/post3.png" alt="post3" />
+              </div>
+              <div class="post-content">
+                <div class="post-actions">
+                  <i class="far fa-heart post-action heart"></i>
+                  <i class="fas fa-comment post-action"></i>
+                  <i class="fas fa-paper-plane post-action"></i>
+                </div>
+                <div class="post-likes">1312 curtidas</div>
+                <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Você sabe onde nos encontrar? 🤔 Nossa Loja 04 está localizada na Rua Ceará do Brandão Rocha, 1022 - Novo Milênio! 📍 Venha nos fazer uma visita, conhecer nossas promoções e contar com o melhor atendimento da região. Estamos te esperando!</p>
+              </div>
+            </div>
+          </div>
+          <div class="instagram-cta">
+            <a href="https://www.instagram.com/drogariafigueiredonovomilenio" class="instagram-btn" target="_blank"> <i class="fab fa-instagram"></i> Siga-nos no Instagram </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <div class="container">
+          <div class="section-title">
+            <h2>Nossos Serviços</h2>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-pills"></i></div>
+              <h3>Medicamentosos</h3>
+              <p>Ampla variedade de medicamentos de referência, genéricos e similares para atender todas as suas necessidades.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-leaf"></i></div>
+              <h3>Fitoterápicos</h3>
+              <p>Produtos naturais e fitoterápicos para quem busca alternativas para cuidar da saúde.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-pump-soap"></i></div>
+              <h3>Cosméticos</h3>
+              <p>Linha completa de produtos de beleza, higiene pessoal e perfumaria das melhores marcas.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-truck"></i></div>
+              <h3>Entrega Rápida</h3>
+              <p>Serviço de entrega no mesmo dia para sua comodidade. Receba seus produtos sem sair de casa.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="location" id="location">
+        <div class="container">
+          <div class="section-title">
+            <h2>Nossas Unidades</h2>
+          </div>
+          <div class="location-container">
+            <div class="map-container">
+              <div id="map"></div>
+            </div>
+            <div class="locations-list">
+              <div class="location-item active" data-lat="-7.1576" data-lng="-34.8609" data-name="Valentina" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Valentina</h3>
+                  <p class="unit-phone">Tel: (83) 3231-4500</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                      <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item" data-lat="-7.1496" data-lng="-34.8770" data-name="Mangabeira" data-weekday-hours="08:00-20:00" data-sunday-hours="09:00-18:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Mangabeira</h3>
+                  <p class="unit-phone">Tel: (83) 3238-2200</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 08:00 : 20:00</li>
+                      <li><strong>Dom:</strong> 09:00 - 18:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item" data-lat="-7.1191" data-lng="-34.8330" data-name="Manaíra" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Manaíra</h3>
+                  <p class="unit-phone">Tel: (83) 3247-6600</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                      <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item" data-lat="-7.1150" data-lng="-34.8456" data-name="Centro" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Centro</h3>
+                  <p class="unit-phone">Tel: (83) 3214-3300</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                      <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item" data-lat="-7.1334" data-lng="-34.8229" data-name="Cabo Branco" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Cabo Branco</h3>
+                  <p class="unit-phone">Tel: (83) 3226-7700</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                      <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Bancários</h3>
+                  <p class="unit-phone">Tel: (83) 3235-8800</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
+                      <li><strong>Dom:</strong> 08:00 - 19:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="location-item" data-lat="-7.1496" data-lng="-34.8770" data-name="Mangabeira" data-weekday-hours="08:00-20:00" data-sunday-hours="09:00-18:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Mangabeira</h3>
-                <p class="unit-phone">Tel: (83) 3238-2200</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 08:00 : 20:00</li>
-                    <li><strong>Dom:</strong> 09:00 - 18:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
+      <section class="testimonials" id="testimonials">
+        <div class="container">
+          <div class="section-title">
+            <h2>O que dizem nossos clientes</h2>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Ótimos preços e variedade de produtos. Sempre encontro o que preciso!"</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">MR</div>
+                <div>
+                  <div class="testimonial-name">Maria Rodrigues</div>
+                  <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
               </div>
             </div>
-
-            <div class="location-item" data-lat="-7.1191" data-lng="-34.8330" data-name="Manaíra" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Manaíra</h3>
-                <p class="unit-phone">Tel: (83) 3247-6600</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
-                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Maravilhoso atendimento! Os funcionários são muito atenciosos e prestativos."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">JS</div>
+                <div>
+                  <div class="testimonial-name">João Silva</div>
+                  <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
               </div>
             </div>
-
-            <div class="location-item" data-lat="-7.1150" data-lng="-34.8456" data-name="Centro" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Centro</h3>
-                <p class="unit-phone">Tel: (83) 3214-3300</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
-                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="location-item" data-lat="-7.1334" data-lng="-34.8229" data-name="Cabo Branco" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Cabo Branco</h3>
-                <p class="unit-phone">Tel: (83) 3226-7700</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
-                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-              <div class="unit-info">
-                <h3 class="unit-name">Unidade Bancários</h3>
-                <p class="unit-phone">Tel: (83) 3235-8800</p>
-                <div class="unit-hours-wrapper">
-                  <ul class="hours-list">
-                    <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
-                    <li><strong>Dom:</strong> 08:00 - 19:00</li>
-                  </ul>
-                  <span class="hours-status"></span>
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Entrega rápida e eficiente. Sempre recebo meus medicamentos no mesmo dia!"</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">CA</div>
+                <div>
+                  <div class="testimonial-name">Carlos Almeida</div>
+                  <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="testimonials" id="testimonials">
-      <div class="container">
-        <div class="section-title">
-          <h2>O que dizem nossos clientes</h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <p class="testimonial-text">"Ótimos preços e variedade de produtos. Sempre encontro o que preciso!"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">MR</div>
-              <div>
-                <div class="testimonial-name">Maria Rodrigues</div>
-                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              </div>
-            </div>
+      <section id="ofertas-whatsapp">
+        <div class="container">
+          <div class="section-title">
+            <h2>Participe do nosso Grupo de Ofertas</h2>
           </div>
-          <div class="testimonial-card">
-            <p class="testimonial-text">"Maravilhoso atendimento! Os funcionários são muito atenciosos e prestativos."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">JS</div>
-              <div>
-                <div class="testimonial-name">João Silva</div>
-                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p class="testimonial-text">"Entrega rápida e eficiente. Sempre recebo meus medicamentos no mesmo dia!"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">CA</div>
-              <div>
-                <div class="testimonial-name">Carlos Almeida</div>
-                <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-              </div>
-            </div>
+
+          <div class="ofertas-whatsapp-content">
+            <p>Seja o primeiro a saber das nossas melhores promoções, lançamentos e dicas de saúde. Acesse nosso grupo exclusivo no WhatsApp!</p>
+
+            <a href="httpso://chat.whatsapp.com/SEU_LINK_DE_CONVITE_AQUI" class="btn-ofertas-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              <span>QUERO PARTICIPAR DO GRUPO</span>
+            </a>
+
+            <small class="aviso-privacidade"> Sem spam! Apenas ofertas e novidades importantes. </small>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="ofertas-whatsapp">
-      <div class="container">
-        <div class="section-title">
-          <h2>Participe do nosso Grupo de Ofertas</h2>
-        </div>
-
-        <div class="ofertas-whatsapp-content">
-          <p>Seja o primeiro a saber das nossas melhores promoções, lançamentos e dicas de saúde. Acesse nosso grupo exclusivo no WhatsApp!</p>
-
-          <a href="httpso://chat.whatsapp.com/SEU_LINK_DE_CONVITE_AQUI" class="btn-ofertas-whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span>QUERO PARTICIPAR DO GRUPO</span>
-          </a>
-
-          <small class="aviso-privacidade"> Sem spam! Apenas ofertas e novidades importantes. </small>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="modern-footer">
       <div class="footer-main">

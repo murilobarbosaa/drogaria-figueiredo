@@ -1,7 +1,6 @@
 function initHamburgerMenu() {
   const btn = document.getElementById("hamburger");
   const nav = document.getElementById("nav-menu");
-
   if (!btn || !nav) return;
 
   btn.addEventListener("click", () => {
@@ -20,16 +19,18 @@ function initHamburgerMenu() {
 }
 
 function initSmoothScroll() {
-  const headerHeight = document.querySelector("header").offsetHeight;
+  const header = document.querySelector("header");
+  const headerHeight = header ? header.offsetHeight : 0;
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const targetEl = document.querySelector(anchor.getAttribute("href"));
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      const targetEl = document.querySelector(href);
       if (!targetEl) return;
 
+      event.preventDefault();
       const topPos = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
       window.scrollTo({ top: topPos, behavior: "smooth" });
     });
   });
@@ -78,9 +79,11 @@ function initLocationStatus() {
     if (minutesNow >= minutesOpen && minutesNow < minutesClose) {
       statusEl.textContent = "Aberto";
       statusEl.classList.add("open");
+      statusEl.classList.remove("closed");
     } else {
       statusEl.textContent = "Fechado";
       statusEl.classList.add("closed");
+      statusEl.classList.remove("open");
     }
   });
 }
@@ -110,75 +113,102 @@ function initCarousel() {
 }
 
 let map;
-const markers = {};
+const itemToMarker = new Map();
+let selectedPos = null;
+let suppressMapClickUntil = 0;
 
 window.initMap = () => {
   const items = document.querySelectorAll(".location-item");
   if (!items.length) return;
 
-  const { lat, lng } = items[0].dataset;
-  const defaultPos = { lat: +lat, lng: +lng };
+  const mapEl = document.getElementById("map");
+  const first = items[0];
+  const defaultPos = { lat: +first.dataset.lat, lng: +first.dataset.lng };
 
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(mapEl, {
     zoom: 15,
     center: defaultPos,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
+    clickableIcons: false,
+    gestureHandling: "none",
+    draggable: false,
+    zoomControl: false,
     styles: [
       { featureType: "poi.business", stylers: [{ visibility: "off" }] },
       { featureType: "road", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
     ],
   });
 
-  items.forEach((item) => {
-    const position = {
-      lat: +item.dataset.lat,
-      lng: +item.dataset.lng,
-    };
-    const title = `Drogaria Figueiredo - ${item.dataset.name}`;
+  const select = (item, marker) => {
+    items.forEach((i) => i.classList.remove("active"));
+    item.classList.add("active");
+
+    const pos = { lat: +item.dataset.lat, lng: +item.dataset.lng };
+    selectedPos = pos;
+
+    map.setCenter(pos);
+    map.setZoom(16);
+
+    itemToMarker.forEach((m) => m.setAnimation(null));
+    if (marker && google.maps.Animation) {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(() => marker.setAnimation(null), 900);
+    }
+  };
+
+  items.forEach((item, idx) => {
+    const position = { lat: +item.dataset.lat, lng: +item.dataset.lng };
+    const name = item.dataset.name || item.querySelector(".unit-name")?.textContent?.trim() || `Unidade ${idx + 1}`;
+
     const marker = new google.maps.Marker({
       map,
       position,
-      title,
+      title: `Drogaria Figueiredo - ${name}`,
       animation: google.maps.Animation.DROP,
     });
-    markers[item.dataset.name] = marker;
 
-    item.addEventListener("click", () => {
-      items.forEach((i) => i.classList.remove("active"));
-      item.classList.add("active");
-      map.setCenter(position);
-      map.setZoom(16);
-      toggleBounce(marker);
+    itemToMarker.set(item, marker);
+
+    marker.addListener("click", () => {
+      suppressMapClickUntil = Date.now() + 250;
+      select(item, marker);
     });
-  });
-};
 
-function toggleBounce(activeMarker) {
-  Object.values(markers).forEach((m) => m.setAnimation(null));
-  activeMarker.setAnimation(google.maps.Animation.BOUNCE);
-  setTimeout(() => activeMarker.setAnimation(null), 1400);
-}
+    item.addEventListener("click", () => select(item, marker));
+  });
+
+  select(first, itemToMarker.get(first));
+
+  map.addListener("click", () => {
+    if (Date.now() < suppressMapClickUntil) return;
+    if (selectedPos) {
+      const url = `https://www.google.com/maps?q=${selectedPos.lat},${selectedPos.lng}`;
+      window.open(url, "_blank", "noopener");
+    }
+  });
+
+  setTimeout(() => {
+    if (window.google?.maps && map) {
+      google.maps.event.trigger(map, "resize");
+      if (selectedPos) map.setCenter(selectedPos);
+    }
+  }, 100);
+};
 
 function handleMapError() {
   const container = document.getElementById("map");
   if (!container || window.google?.maps) return;
-
   container.innerHTML = `
     <div style="
-      height:100%;display:flex;
-      align-items:center;justify-content:center;
-      flex-direction:column;text-align:center;
-      padding:20px;background:#f5f5f5;
+      height:100%;display:flex;align-items:center;justify-content:center;
+      flex-direction:column;text-align:center;padding:20px;background:#f5f5f5;
+      border-radius:12px;border:1px solid #eee;
     ">
-      <i class="fas fa-map-marker-alt"
-         style="font-size:3rem;color:#ccc;margin-bottom:20px;">
-      </i>
+      <i class="fas fa-map-marker-alt" style="font-size:3rem;color:#ccc;margin-bottom:20px;"></i>
       <h3 style="color:#555;">Não foi possível carregar o mapa</h3>
-      <p style="color:#777;">
-        Por favor, verifique sua conexão com a internet.
-      </p>
+      <p style="color:#777;">Verifique sua conexão ou as permissões da API.</p>
     </div>`;
 }
 
