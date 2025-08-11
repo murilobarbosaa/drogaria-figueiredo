@@ -237,3 +237,243 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.readyState === "complete") run();
   else window.addEventListener("load", run);
 })();
+
+(function () {
+  function adjustBodyOffset() {
+    var header = document.querySelector("header");
+    if (!header) return;
+    var h = header.offsetHeight || 70;
+    document.documentElement.style.setProperty("--header-h", h + "px");
+    document.body.style.paddingTop = h + "px";
+  }
+
+  function enhanceMobileMenu() {
+    var nav = document.getElementById("nav-menu");
+    var btn = document.getElementById("hamburger");
+    if (!nav || !btn) return;
+
+    var backdrop = document.querySelector(".nav-backdrop");
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.className = "nav-backdrop";
+      document.body.appendChild(backdrop);
+    }
+
+    var syncUI = function () {
+      var isOpen = nav.classList.contains("active");
+      backdrop.classList.toggle("active", isOpen);
+      document.body.classList.toggle("no-scroll", isOpen);
+      btn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    };
+
+    nav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        nav.classList.remove("active");
+        syncUI();
+      });
+    });
+
+    backdrop.addEventListener("click", function () {
+      nav.classList.remove("active");
+      syncUI();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("active")) {
+        nav.classList.remove("active");
+        syncUI();
+      }
+    });
+
+    function closeOnDesktop() {
+      if (window.innerWidth >= 992 && nav.classList.contains("active")) {
+        nav.classList.remove("active");
+        syncUI();
+      }
+    }
+    window.addEventListener("resize", closeOnDesktop);
+
+    var mo = new MutationObserver(syncUI);
+    mo.observe(nav, { attributes: true, attributeFilter: ["class"] });
+
+    syncUI();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    adjustBodyOffset();
+    enhanceMobileMenu();
+  });
+  window.addEventListener("load", adjustBodyOffset);
+  window.addEventListener("resize", adjustBodyOffset);
+})();
+
+(function () {
+  function initSnapCarouselFlex(container) {
+    if (!container) return;
+    const items = Array.from(container.children);
+    if (!items.length) return;
+
+    let dotsWrap = container.nextElementSibling;
+    if (!dotsWrap || !dotsWrap.classList.contains("snap-dots")) {
+      dotsWrap = document.createElement("div");
+      dotsWrap.className = "snap-dots";
+      items.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "snap-dot";
+        b.setAttribute("aria-label", `Ir para item ${i + 1}`);
+        b.addEventListener("click", () => scrollToIndex(i));
+        dotsWrap.appendChild(b);
+      });
+      container.insertAdjacentElement("afterend", dotsWrap);
+    }
+    const dots = Array.from(dotsWrap.querySelectorAll(".snap-dot"));
+
+    function updateActive() {
+      const rect = container.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+
+      let active = 0,
+        best = Infinity;
+      items.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        const c = r.left + r.width / 2;
+        const d = Math.abs(c - center);
+        if (d < best) {
+          best = d;
+          active = i;
+        }
+      });
+
+      items.forEach((el, i) => el.classList.toggle("is-active", i === active));
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+    }
+
+    function scrollToIndex(i) {
+      const el = items[i];
+      if (!el) return;
+      const target = el.offsetLeft + el.offsetWidth / 2 - container.clientWidth / 2;
+      container.scrollTo({ left: target, behavior: "smooth" });
+    }
+
+    updateActive();
+    container.addEventListener("scroll", () => requestAnimationFrame(updateActive), { passive: true });
+    window.addEventListener("resize", () => requestAnimationFrame(updateActive));
+    setTimeout(updateActive, 50);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll(".instagram-grid, .services-grid").forEach(initSnapCarouselFlex);
+    }
+  });
+})();
+
+(function () {
+  function initMainCarouselSnap(root) {
+    const container = root || document.querySelector(".carousel-container");
+    if (!container) return;
+    const track = container.querySelector(".carousel-slides");
+    const slides = Array.from(track?.children || []);
+    if (!track || slides.length === 0) return;
+
+    container.classList.add("carousel--snap");
+    track.style.transform = "";
+
+    const dotsWrap = container.querySelector(".carousel-dots");
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll(".carousel-dot")) : [];
+
+    function setActiveByCenter() {
+      const rect = container.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      let active = 0,
+        best = Infinity;
+      slides.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        const c = r.left + r.width / 2;
+        const d = Math.abs(c - center);
+        if (d < best) {
+          best = d;
+          active = i;
+        }
+      });
+      slides.forEach((el, i) => el.classList.toggle("is-active", i === active));
+      dots.forEach((d, i) => d.classList.toggle("active", i === active));
+      return active;
+    }
+
+    function scrollToIndex(i) {
+      const el = slides[i];
+      if (!el) return;
+      const target = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
+      track.scrollTo({ left: target, behavior: "smooth" });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        stopAuto();
+        scrollToIndex(i);
+        restartAutoSoon();
+      });
+    });
+
+    let autoTimer = null;
+    let resumeTimer = null;
+
+    function nextSlide() {
+      const current = setActiveByCenter();
+      const next = (current + 1) % slides.length;
+      scrollToIndex(next);
+    }
+    function startAuto() {
+      if (autoTimer) return;
+      autoTimer = setInterval(nextSlide, 3000);
+    }
+    function stopAuto() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAutoSoon(delay = 4000) {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAuto, delay);
+    }
+
+    ["touchstart", "pointerdown", "mousedown", "keydown"].forEach((evt) => {
+      track.addEventListener(
+        evt,
+        () => {
+          stopAuto();
+        },
+        { passive: true }
+      );
+    });
+    ["touchend", "pointerup", "mouseup"].forEach((evt) => {
+      track.addEventListener(
+        evt,
+        () => {
+          restartAutoSoon();
+        },
+        { passive: true }
+      );
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopAuto();
+      else restartAutoSoon(1000);
+    });
+
+    track.addEventListener("scroll", () => requestAnimationFrame(setActiveByCenter), { passive: true });
+    window.addEventListener("resize", () => requestAnimationFrame(setActiveByCenter));
+
+    setTimeout(() => {
+      setActiveByCenter();
+      startAuto();
+    }, 80);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll(".carousel-container").forEach(initMainCarouselSnap);
+    }
+  });
+})();
