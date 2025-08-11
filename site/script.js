@@ -231,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
         attrs: { stroke: "#475569", "stroke-width": 1.8, width: 36, height: 36 },
       });
     } else {
-      // script do Lucide ainda não chegou; tenta de novo
       setTimeout(run, 120);
     }
   }
