@@ -109,7 +109,7 @@ function initCarousel() {
   nextBtn?.addEventListener("click", () => goTo((current + 1) % total));
   dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.slide))));
 
-  setInterval(() => goTo((current + 1) % total), 5000);
+  setInterval(() => goTo((current + 1) % total), 3500);
 }
 
 let map;
