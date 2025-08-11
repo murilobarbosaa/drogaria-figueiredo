@@ -159,6 +159,14 @@ section {
   transform: translateX(-50%);
 }
 
+.section-cta {
+  margin-top: 44px;
+  display: flex;
+  align-items: center; /* centraliza vertical */
+  justify-content: center; /* centraliza horizontal */
+  text-align: center;
+}
+
 .hero {
   position: relative;
   color: var(--white);
