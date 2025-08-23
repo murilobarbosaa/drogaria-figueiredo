@@ -2648,3 +2648,35 @@ footer.modern-footer {
     }
   }
 }
+
+.footer-links a i,
+.footer-links a .fa,
+.footer-links a .fas,
+.footer-links a .far,
+.footer-links a .fal,
+.footer-links a .fab,
+.footer-links a svg,
+.footer-links a svg * {
+  color: currentColor !important;
+  fill: currentColor;
+  stroke: currentColor;
+  transition: var(--transition) !important;
+}
+
+.map-container,
+.map-container *,
+#map,
+#map * {
+  cursor: pointer !important;
+}
+
+a:hover:not(.btn):not(.whatsapp-btn):not(.instagram-btn) {
+  color: var(--secondary) !important;
+}
+
+.footer-links a {
+  transition: var(--transition) !important;
+}
+.footer-links a:hover {
+  color: var(--secondary) !important;
+}
