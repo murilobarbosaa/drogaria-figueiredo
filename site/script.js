@@ -36,6 +36,17 @@ function initSmoothScroll() {
   });
 }
 
+function initBannerWhatsApp() {
+  const phone = "5583987731766";
+  const msg = "Vim pelo site! Quero aproveitar as promoções.";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+  document.querySelectorAll(".carousel-slides .slide").forEach((slide) => {
+    slide.style.cursor = "pointer";
+    slide.addEventListener("click", () => window.open(url, "_blank", "noopener"));
+  });
+}
+
 function initLikeButtons() {
   document.querySelectorAll(".post-action.heart").forEach((heart) => {
     heart.addEventListener("click", () => {
@@ -222,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLikeButtons();
   initLocationStatus();
   initCarousel();
+  initBannerWhatsApp();
 });
 
 (function initLucideIcons() {
