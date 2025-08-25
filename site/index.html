@@ -114,7 +114,7 @@
     </script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBliEnMz-jYzBeozgxRTgmpWmv136hqooo&callback=initMap"></script>
   </head>
-  <body>
+  <body id="top">
     <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
     <style>
       .skip-link {
@@ -153,7 +153,9 @@
     <header>
       <div class="header-container container">
         <div class="logo">
-          <img src="./assets/images/logos/logo.png" alt="Drogaria Figueiredo Logo" />
+          <a href="#top" class="logo" aria-label="Voltar ao topo">
+            <img src="./assets/images/logos/logo.png" alt="Drogaria Figueiredo Logo" />
+          </a>
         </div>
         <button class="hamburger" id="hamburger">
           <i class="fas fa-bars"></i>
@@ -192,9 +194,9 @@
         </div>
         <div class="carousel-container">
           <div class="carousel-slides">
-            <div class="slide"><img src="./assets/images/banner/primeiro_banner.svg" alt="Promoção 1" /></div>
-            <div class="slide"><img src="./assets/images/banner/segundo_banner.svg" alt="Promoção 2" /></div>
-            <div class="slide"><img src="./assets/images/banner/terceiro_banner.svg" alt="Promoção 3" /></div>
+            <div class="slide"><img src="./assets/images/banners/primeiro_banner.svg" alt="Promoção 1" /></div>
+            <div class="slide"><img src="./assets/images/banners/segundo_banner.svg" alt="Promoção 2" /></div>
+            <div class="slide"><img src="./assets/images/banners/terceiro_banner.svg" alt="Promoção 3" /></div>
           </div>
 
           <button class="carousel-btn carousel-btn--prev">
@@ -282,7 +284,7 @@
                 <div class="post-username">drogariafigueiredonovomilenio</div>
               </div>
               <div class="post-image">
-                <img src="./assets/images/post/primeiro_post.png" alt="post1" />
+                <img src="./assets/images/posts/primeiro_post.png" alt="post1" />
               </div>
               <div class="post-content">
                 <div class="post-actions">
@@ -306,7 +308,7 @@
                 <div class="post-username">drogariafigueiredonovomilenio</div>
               </div>
               <div class="post-image">
-                <img src="./assets/images/post/segundo_post.png" alt="post2" />
+                <img src="./assets/images/posts/segundo_post.png" alt="post2" />
               </div>
               <div class="post-content">
                 <div class="post-actions">
@@ -327,7 +329,7 @@
                 <div class="post-username">drogariafigueiredonovomilenio</div>
               </div>
               <div class="post-image">
-                <img src="./assets/images/post/terceiro_post.png" alt="post3" />
+                <img src="./assets/images/posts/terceiro_post.png" alt="post3" />
               </div>
               <div class="post-content">
                 <div class="post-actions">
