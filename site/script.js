@@ -208,6 +208,25 @@ window.initMap = () => {
   }, 100);
 };
 
+const mapElement = document.getElementById("map");
+const messageElement = document.getElementById("construction-message");
+const locationItems = document.querySelectorAll(".location-item");
+
+function resetMap() {
+  mapElement.classList.remove("offscreen");
+  messageElement.style.display = "none";
+}
+
+locationItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    resetMap();
+
+    if (item.dataset.name === "Bancários") {
+      mapElement.classList.add("offscreen");
+    }
+  });
+});
+
 function handleMapError() {
   const container = document.getElementById("map");
   if (!container || window.google?.maps) return;

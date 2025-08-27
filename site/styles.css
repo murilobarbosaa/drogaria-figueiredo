@@ -662,6 +662,11 @@ section {
   height: 100%;
 }
 
+#map.offscreen {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
 .locations-list {
   flex: 1 1 300px;
   display: grid;
@@ -746,6 +751,22 @@ section {
 .unit-hours-wrapper .hours-status.closed {
   background-color: #fdecea;
   color: #c0392b;
+}
+
+.unit-status {
+  margin-top: 15%;
+}
+
+.unit-status .status-text {
+  background-color: #ffccac;
+  color: #ff5900;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 .testimonials {
@@ -1799,7 +1820,8 @@ header {
     align-items: center !important;
     justify-content: flex-start !important;
   }
-  .hours-status {
+  .hours-status,
+  .status-text {
     margin: 0 !important;
     padding: 3px 8px !important;
     font-size: 0.74rem !important;
@@ -1826,7 +1848,8 @@ header {
   .unit-phone {
     font-size: 0.82rem !important;
   }
-  .hours-status {
+  .hours-status,
+  .status-text {
     font-size: 0.72rem !important;
     padding: 2px 7px !important;
   }
@@ -2679,7 +2702,6 @@ footer.modern-footer {
   color: var(--secondary) !important;
 }
 
-/* Se existir alguma regra mais específica em breakpoints, garantimos o centro */
 @media (min-width: 0) {
   .locations-list .location-item,
   .locations-list .location-item .unit-info,
