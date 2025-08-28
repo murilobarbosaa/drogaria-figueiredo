@@ -126,6 +126,7 @@ function initCarousel() {
 let map;
 const itemToMarker = new Map();
 let selectedPos = null;
+let selectedGmapsUrl = null;
 let suppressMapClickUntil = 0;
 
 window.initMap = () => {
@@ -156,6 +157,8 @@ window.initMap = () => {
     items.forEach((i) => i.classList.remove("active"));
     item.classList.add("active");
 
+    selectedGmapsUrl = item.dataset.gmapsUrl;
+
     const pos = { lat: +item.dataset.lat, lng: +item.dataset.lng };
     selectedPos = pos;
 
@@ -178,6 +181,7 @@ window.initMap = () => {
       position,
       title: `Drogaria Figueiredo - ${name}`,
       animation: google.maps.Animation.DROP,
+      clickable: false,
     });
 
     itemToMarker.set(item, marker);
@@ -194,9 +198,8 @@ window.initMap = () => {
 
   map.addListener("click", () => {
     if (Date.now() < suppressMapClickUntil) return;
-    if (selectedPos) {
-      const url = `https://www.google.com/maps?q=${selectedPos.lat},${selectedPos.lng}`;
-      window.open(url, "_blank", "noopener");
+    if (selectedGmapsUrl) {
+      window.open(selectedGmapsUrl, "_blank", "noopener");
     }
   });
 
