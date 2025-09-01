@@ -710,6 +710,42 @@ section {
   margin-bottom: 12px;
 }
 
+.location-item .unit-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.35rem;
+}
+
+.unit-name {
+  margin: 0 0 0.25rem 0;
+}
+.unit-address {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.unit-phone {
+  margin: 0;
+  line-height: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit-phone + .unit-phone {
+  margin-top: 0.25rem;
+}
+
+.hours-list strong,
+.unit-phone strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.unit-hours-wrapper {
+  margin-top: auto;
+}
+
 .unit-hours-wrapper {
   display: flex;
   flex-direction: column;
@@ -758,8 +794,8 @@ section {
 }
 
 .unit-status .status-text {
-  background-color: #ffccac;
-  color: #ff5900;
+  background-color: #fff8d7;
+  color: #c4a300;
   padding: 8px 15px;
   font-size: 14px;
   font-weight: 600;
