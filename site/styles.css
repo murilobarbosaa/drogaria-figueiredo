@@ -11,15 +11,107 @@
   --header-h: 130px;
 }
 
+/* Sistema responsivo completo com transições suaves */
+
+/* Telas extra grandes */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1500px;
+  }
+
+  .hero h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  .section-title h2 {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+  }
+}
+
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
 @media (max-width: 1200px) {
   .hamburger {
     display: block;
+  }
+  .container {
+    max-width: 960px;
+  }
+
+  /* Ajustes fluidos para telas médias */
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(16px, 3vw, 24px);
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(16px, 3vw, 24px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .instagram-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .services-grid,
+  .instagram-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 576px) {
   :root {
     --header-h: 90px;
+  }
+
+  .hero {
+    padding: clamp(40px, 8vw, 60px) 0;
+  }
+
+  section {
+    padding: clamp(30px, 6vw, 50px) 0;
   }
 }
 
@@ -32,6 +124,7 @@
 
 body {
   font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 2.5vw, 16px);
   line-height: 1.6;
   color: var(--dark-gray);
   overflow-x: hidden;
@@ -43,7 +136,7 @@ body {
   width: 100%;
   max-width: 1450px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(16px, 4vw, 40px);
 }
 
 header {
@@ -144,20 +237,20 @@ header {
 }
 
 section {
-  padding: 55px 0;
+  padding: clamp(40px, 8vw, 80px) 0;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(40px, 8vw, 80px);
 }
 
 .section-title h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: var(--primary);
   position: relative;
   display: inline-block;
-  padding-bottom: 15px;
+  padding-bottom: clamp(12px, 2vw, 20px);
   font-weight: 700;
 }
 
@@ -183,13 +276,13 @@ section {
 .hero {
   position: relative;
   color: var(--white);
-  padding: 100px 0;
+  padding: clamp(60px, 12vw, 120px) 0;
   text-align: center;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(85vh - 80px);
+  min-height: clamp(60vh, 85vh, 90vh);
   background-image: url(./assets/images/store/principal.png);
   background-size: cover;
   background-position: center;
@@ -207,31 +300,37 @@ section {
 }
 
 .hero h2 {
-  font-size: 2.8rem;
-  margin-bottom: 20px;
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  margin-bottom: clamp(16px, 3vw, 24px);
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto 30px;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  max-width: min(90%, 700px);
+  margin: 0 auto clamp(20px, 4vw, 40px);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
 }
 
 .btn {
   display: inline-block;
   background-color: var(--secondary);
   color: var(--dark-gray);
-  padding: 12px 30px;
+  padding: clamp(10px, 2vw, 16px) clamp(20px, 4vw, 40px);
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   transition: var(--transition);
   border: none;
   cursor: pointer;
   box-shadow: var(--shadow);
+  min-height: clamp(40px, 8vw, 52px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -245,10 +344,10 @@ section {
 
 .carousel-container {
   position: relative;
-  width: 90%;
-  max-width: 1120px;
+  width: clamp(85%, 90%, 95%);
+  max-width: 1200px;
   margin: 0 auto;
-  border-radius: 1.5rem;
+  border-radius: clamp(12px, 3vw, 24px);
   overflow: hidden;
 }
 
@@ -457,14 +556,16 @@ section {
 
 .about-text h3 {
   color: var(--primary);
-  margin-bottom: 15px;
-  font-size: 1.8rem;
+  margin-bottom: clamp(12px, 2vw, 20px);
+  font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .about-text p {
-  margin-bottom: 20px;
-  line-height: 1.8;
+  margin-bottom: clamp(16px, 3vw, 24px);
+  line-height: 1.7;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
 }
 
 .instagram-promos {
@@ -473,9 +574,9 @@ section {
 
 .instagram-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 40vw, 350px), 1fr));
+  gap: clamp(20px, 4vw, 40px);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -620,14 +721,14 @@ section {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 30vw, 300px), 1fr));
+  gap: clamp(20px, 4vw, 40px);
 }
 
 .service-card {
   background-color: var(--white);
-  border-radius: 10px;
-  padding: 30px;
+  border-radius: clamp(8px, 2vw, 14px);
+  padding: clamp(20px, 4vw, 40px);
   text-align: center;
   box-shadow: var(--shadow);
   transition: var(--transition);
@@ -639,16 +740,17 @@ section {
 }
 
 .service-icon {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color: var(--primary);
-  margin-bottom: 20px;
+  margin-bottom: clamp(16px, 3vw, 24px);
   display: inline-block;
 }
 
 .service-card h3 {
-  margin-bottom: 15px;
+  margin-bottom: clamp(12px, 2vw, 20px);
   color: var(--primary);
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  line-height: 1.3;
 }
 
 .location {
@@ -658,7 +760,7 @@ section {
 .location-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: clamp(24px, 5vw, 50px);
   align-items: stretch;
 }
 
@@ -683,8 +785,8 @@ section {
 .locations-list {
   flex: 1 1 300px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 280px), 1fr));
+  gap: clamp(16px, 3vw, 24px);
   align-content: start;
 }
 
@@ -825,8 +927,8 @@ section {
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 40vw, 350px), 1fr));
+  gap: clamp(20px, 4vw, 40px);
 }
 
 .testimonial-card {
@@ -963,15 +1065,15 @@ section {
 }
 
 .footer-main {
-  padding: 70px 0 50px;
+  padding: clamp(32px, 6vw, 60px) 0 clamp(20px, 5vw, 40px);
   position: relative;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 50px;
-  margin-bottom: 50px;
+  gap: clamp(30px, 6vw, 60px);
+  margin-bottom: clamp(40px, 6vw, 60px);
 }
 
 .footer-brand {
@@ -1066,7 +1168,6 @@ section {
   list-style: none;
 }
 
-/* Centralizar o último item (Grupo de ofertas) */
 .footer-links li:last-child {
   text-align: center;
   margin-top: 8px;
@@ -1210,7 +1311,7 @@ section {
 .footer-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  margin: 50px 0;
+  margin: 24px 0;
 }
 
 .footer-bottom {
@@ -1219,7 +1320,7 @@ section {
   align-items: center;
   flex-wrap: wrap;
   gap: 24px;
-  padding: 24px 0;
+  padding: 14px 0;
 }
 
 .footer-copyright {
@@ -1322,24 +1423,31 @@ section {
   }
 }
 
+/* Melhorias para dispositivos muito pequenos */
 @media (max-width: 480px) {
   .footer-main {
-    padding: 40px 0 30px;
+    padding: clamp(30px, 8vw, 50px) 0 clamp(20px, 6vw, 40px);
   }
 
   .payment-icons {
     flex-direction: column;
     align-items: center;
+    gap: clamp(8px, 2vw, 12px);
   }
 
   .social-links {
-    gap: 10px;
+    gap: clamp(8px, 2vw, 12px);
   }
 
   .social-link {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
+    width: clamp(36px, 8vw, 44px);
+    height: clamp(36px, 8vw, 44px);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .btn {
+    padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px);
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
   }
 }
 
@@ -1360,21 +1468,21 @@ section {
 
 .floating-contact {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: clamp(20px, 5vw, 40px);
+  right: clamp(20px, 5vw, 40px);
   z-index: 999;
 }
 
 .floating-btn {
-  width: 60px;
-  height: 60px;
+  width: clamp(50px, 12vw, 70px);
+  height: clamp(50px, 12vw, 70px);
   background-color: #25d366;
   color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: var(--transition);
@@ -1970,7 +2078,7 @@ header {
 }
 
 footer.modern-footer {
-  padding: 40px 0 24px;
+  padding: 24px 0 16px;
 }
 .modern-footer .footer-main .container {
   padding-left: 16px;
@@ -3175,5 +3283,94 @@ footer.modern-footer {
     justify-content: center !important;
     width: 340px !important;
     margin: 0 auto !important;
+  }
+}
+
+/* Ajustes específicos para mobile solicitados */
+@media (max-width: 576px) {
+  /* Footer: centralizar cards dos links rápidos e igualar tamanhos (inclui Grupo de Ofertas) */
+  .footer-links {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+  .footer-links li {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .footer-links a {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin-left: 0 !important;
+    justify-content: center !important;
+  }
+  .footer-links li:last-child a {
+    max-width: 320px !important;
+  }
+
+  /* Garantir que o último item (Grupo de Ofertas) siga o mesmo alinhamento/ largura */
+  .footer-links li:last-child {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .footer-links li:last-child a {
+    width: 100% !important;
+    margin: 0 auto !important;
+    margin-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  /* Espaço abaixo do botão "Quero atendimento no WhatsApp" reduzido pela metade */
+  .testimonials {
+    padding-bottom: 60px !important;
+  }
+
+  /* Espaço adicional após o botão "Falar com o farmacêutico" */
+  .about .section-cta {
+    margin-bottom: 28px !important;
+  }
+
+  /* Aumentar o espaço após os cards de benefícios para harmonizar com a sessão Sobre */
+  .benefits-modern {
+    margin-bottom: 36px !important;
+  }
+}
+
+/* Alinhamento correto do "Grupo de Ofertas" no footer */
+@media (min-width: 1201px) {
+  /* Desktop: alinhar à esquerda como os demais itens */
+  .footer-links li:last-child {
+    text-align: left !important;
+    margin-top: 8px !important;
+  }
+  .footer-links li:last-child a {
+    justify-content: flex-start !important;
+    max-width: none !important;
+    margin-left: 20px !important; /* mesmo recuo dos demais links */
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile/Tablet pequeno: garantir centralização consistente */
+  .footer-links {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+  .footer-links li,
+  .footer-links li:last-child {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .footer-links a,
+  .footer-links li:last-child a {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
   }
 }
