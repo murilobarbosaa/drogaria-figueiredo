@@ -256,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLocationStatus();
   initCarousel();
   initBannerWhatsApp();
+  initActiveSectionHighlight();
 });
 
 (function initLucideIcons() {
@@ -307,6 +308,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    var headerLogo = document.querySelector("header a.logo");
+    if (headerLogo) {
+      headerLogo.addEventListener("click", function () {
+        if (nav.classList.contains("active")) {
+          nav.classList.remove("active");
+          syncUI();
+        }
+      });
+    }
+
     backdrop.addEventListener("click", function () {
       nav.classList.remove("active");
       syncUI();
@@ -340,6 +351,76 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", adjustBodyOffset);
   window.addEventListener("resize", adjustBodyOffset);
 })();
+
+function initActiveSectionHighlight() {
+  const links = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+  if (!links.length) return;
+
+  const idToLink = new Map(
+    links
+      .map((a) => a.getAttribute("href"))
+      .filter((href) => href && href.length > 1 && href.startsWith("#"))
+      .map((href) => [href.slice(1), document.querySelector(`.nav-menu a[href="${href}"]`)])
+  );
+
+  const sections = Array.from(idToLink.keys())
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(href) {
+    links.forEach((a) => a.classList.remove("active"));
+    if (!href) return;
+    const link = document.querySelector(`.nav-menu a[href="${href}"]`);
+    if (link) link.classList.add("active");
+  }
+
+  function computeActiveByScroll() {
+    const headerH = document.querySelector("header")?.offsetHeight || 70;
+    const threshold = window.scrollY + headerH + 1;
+
+    let activeSection = null;
+    for (const sec of sections) {
+      const top = sec.offsetTop;
+      if (top <= threshold) {
+        activeSection = sec;
+      } else {
+        break;
+      }
+    }
+
+    if (!activeSection) {
+      activeSection = sections[0];
+    }
+
+    if (activeSection?.id && idToLink.has(activeSection.id)) {
+      setActive(`#${activeSection.id}`);
+    } else {
+      setActive(null);
+    }
+  }
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        computeActiveByScroll();
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
+  window.addEventListener("resize", computeActiveByScroll);
+  window.addEventListener("load", computeActiveByScroll);
+  setTimeout(computeActiveByScroll, 60);
+
+  window.addEventListener("hashchange", () => {
+    computeActiveByScroll();
+  });
+}
 
 (function () {
   function initSnapCarouselFlex(container) {
