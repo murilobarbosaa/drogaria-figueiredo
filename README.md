@@ -6,9 +6,21 @@
   <h3>🏪 Pharmacy Chain in João Pessoa - PB, Brazil</h3>
   <p><strong>Health, Promotions and Quality Service</strong></p>
   
-  [![Website](https://img.shields.io/badge/Website-drogariafigueiredo.com.br-blue?style=for-the-badge&logo=google-chrome)](https://drogariafigueiredo.com.br/)
-  [![Instagram](https://img.shields.io/badge/Instagram-@drogariafigueiredonovomilenio-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/drogariafigueiredonovomilenio/)
-  [![WhatsApp](https://img.shields.io/badge/WhatsApp-(83)_98773--1766-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/5583987731766)
+  <br>
+  
+  <a href="https://drogariafigueiredo.com.br/" target="_blank">
+    <img src="https://img.shields.io/badge/🌐_Website-00C7BE?style=for-the-badge&logo=Google-Chrome&logoColor=white&labelColor=21262D" alt="Website" />
+  </a>
+  <a href="https://www.instagram.com/drogariafigueiredonovomilenio/" target="_blank">
+    <img src="https://img.shields.io/badge/📸_Instagram-E4405F?style=for-the-badge&logo=Instagram&logoColor=white&labelColor=21262D" alt="Instagram" />
+  </a>
+  <a href="https://wa.me/5583987731766" target="_blank">
+    <img src="https://img.shields.io/badge/💬_WhatsApp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=white&labelColor=21262D" alt="WhatsApp" />
+  </a>
+  
+  <br><br>
+  
+  ![Visitors](https://api.visitorbadge.io/api/visitors?path=drogariafigueiredo&label=Visitors&labelColor=%2321262D&countColor=%2300C7BE&style=for-the-badge)
   
 </div>
 
@@ -37,72 +49,64 @@ The website is available in production at: **[https://drogariafigueiredo.com.br/
 
 <div align="center">
   <img src="site/assets/images/screenshots/01.png" alt="Homepage - Hero Section" width="800"/>
-  <p><em>Homepage with main banner and call-to-action</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/02.png" alt="Featured Promotions" width="800"/>
-  <p><em>Promotions and benefits section</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/03.png" alt="Our Services" width="800"/>
-  <p><em>Services offered by the pharmacy</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/04.png" alt="Instagram Feed" width="800"/>
-  <p><em>Instagram integration</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/05.png" alt="About Us" width="800"/>
-  <p><em>Institutional information</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/06.png" alt="Our Stores" width="800"/>
-  <p><em>Store locations</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/07.png" alt="Testimonials" width="800"/>
-  <p><em>Customer reviews</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/08.png" alt="Offers Group" width="800"/>
-  <p><em>CTA for WhatsApp offers group</em></p>
 </div>
 
 <div align="center">
   <img src="site/assets/images/screenshots/09.png" alt="Footer" width="800"/>
-  <p><em>Footer with contact information</em></p>
-</div>
-
-### Mobile
-
-<div align="center">
-  <img src="site/assets/images/screenshots/10.png" alt="Mobile - Homepage" width="300"/>
-  <img src="site/assets/images/screenshots/11.png" alt="Mobile - Menu" width="300"/>
-  <p><em>Responsive mobile version</em></p>
 </div>
 
 <div align="center">
-  <img src="site/assets/images/screenshots/12.png" alt="Mobile - Services" width="300"/>
-  <img src="site/assets/images/screenshots/13.png" alt="Mobile - Stores" width="300"/>
-  <p><em>Navigation and content optimized for mobile devices</em></p>
+  <img src="site/assets/images/screenshots/10.png" alt="Mobile - Homepage" width="800"/>
+</div>
+
+<div align="center">
+  <img src="site/assets/images/screenshots/11.png" alt="Mobile - Menu" width="800"/>
+</div>
+
+<div align="center">
+  <img src="site/assets/images/screenshots/12.png" alt="Mobile - Services" width="800"/>
+</div>
+
+<div align="center">
+  <img src="site/assets/images/screenshots/13.png" alt="Mobile - Stores" width="800"/>
 </div>
 
 ## 🚀 Technologies Used
 
 <div align="center">
-  
-  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-  ![Font Awesome](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white)
-  
+  <a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="55" height="55"/></a>&nbsp;&nbsp;
+  <a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3" width="55" height="55"/></a>&nbsp;&nbsp;
+  <a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="55" height="55"/></a>&nbsp;&nbsp;
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="55" height="55"/></a>&nbsp;&nbsp;
+  <a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/google/google-original.svg" alt="Google Fonts" width="55" height="55"/></a>
 </div>
 
 ### 📚 Detailed Stack
@@ -110,8 +114,9 @@ The website is available in production at: **[https://drogariafigueiredo.com.br/
 - **HTML5** - Semantic and accessible structure
 - **CSS3** - Modern styling with CSS variables, Flexbox and Grid
 - **Vanilla JavaScript** - Interactivity without external dependencies
-- **Font Awesome 6.4.0** - Icon library
+- **Figma** - UI/UX Design and prototyping
 - **Google Fonts (Montserrat)** - Professional typography
+- **Font Awesome** - Icon library
 - **Responsive Design** - Adaptive layout for all devices
 - **Optimized SEO** - Structured meta tags and Schema.org
 - **Progressive Enhancement** - Guaranteed basic functionality
@@ -122,20 +127,20 @@ The website is available in production at: **[https://drogariafigueiredo.com.br/
 drogaria-figueiredo/
 ├── README.md
 └── site/
-    ├── index.html          # Main page
-    ├── styles.css          # Global styles
-    ├── script.js           # JavaScript functionalities
+    ├── index.html
+    ├── styles.css
+    ├── script.js
     └── assets/
         ├── favicon.ico
         └── images/
-            ├── banners/    # Responsive banners
+            ├── banners/
             │   ├── desktop/
             │   ├── tablet/
             │   └── mobile/
-            ├── logos/      # Logos and brands
-            ├── posts/      # Instagram images
-            ├── screenshots/# Screenshots
-            └── store/      # Store images
+            ├── logos/
+            ├── posts/
+            ├── screenshots/
+            └── store/
 ```
 
 ## ✨ Main Features
