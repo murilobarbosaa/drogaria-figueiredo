@@ -211,6 +211,15 @@ window.initMap = () => {
   }, 100);
 };
 
+if (!window.google?.maps && window.CONFIG?.GOOGLE_MAPS_API_KEY) {
+  (function () {
+    var script = document.createElement("script");
+    script.defer = true;
+    script.src = "https://maps.googleapis.com/maps/api/js?key=" + encodeURIComponent(window.CONFIG.GOOGLE_MAPS_API_KEY) + "&callback=initMap";
+    document.head.appendChild(script);
+  })();
+}
+
 const mapElement = document.getElementById("map");
 const messageElement = document.getElementById("construction-message");
 const locationItems = document.querySelectorAll(".location-item");

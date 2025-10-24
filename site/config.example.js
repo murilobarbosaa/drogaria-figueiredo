@@ -1,0 +1,3 @@
+window.CONFIG = {
+  GOOGLE_MAPS_API_KEY: "SUA_CHAVE_AQUI",
+};

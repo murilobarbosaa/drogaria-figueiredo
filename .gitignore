@@ -1,0 +1,11 @@
+# Local config (nunca versionar)
+site/config.js
+
+# Sistema/Editor
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+*.log
+
+
