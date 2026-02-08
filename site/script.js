@@ -101,26 +101,48 @@ function initLocationStatus() {
 
 function initCarousel() {
   const slides = document.querySelectorAll(".slide");
-  const track = document.querySelector(".carousel-slides");
   const dots = Array.from(document.querySelectorAll(".carousel-dot"));
   const prevBtn = document.querySelector(".carousel-btn--prev");
   const nextBtn = document.querySelector(".carousel-btn--next");
+  
+  if (!slides.length) return;
+
   let current = 0;
   const total = slides.length;
-  if (!track || !dots.length) return;
 
-  const goTo = (index) => {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot) => dot.classList.remove("active"));
-    dots[index].classList.add("active");
+  const updateSlides = (index) => {
+    slides.forEach(slide => {
+      slide.classList.remove("active", "prev", "next");
+    });
+    
+    dots.forEach(dot => dot.classList.remove("active"));
+    if (dots[index]) dots[index].classList.add("active");
+
+    // Circular indices
+    const nextIndex = (index + 1) % total;
+    const prevIndex = (index - 1 + total) % total;
+
+    slides[index].classList.add("active");
+    slides[nextIndex].classList.add("next");
+    slides[prevIndex].classList.add("prev");
+
     current = index;
   };
 
-  prevBtn?.addEventListener("click", () => goTo((current - 1 + total) % total));
-  nextBtn?.addEventListener("click", () => goTo((current + 1) % total));
-  dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.slide))));
+  prevBtn?.addEventListener("click", () => updateSlides((current - 1 + total) % total));
+  nextBtn?.addEventListener("click", () => updateSlides((current + 1) % total));
+  
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => updateSlides(idx));
+  });
 
-  setInterval(() => goTo((current + 1) % total), 3500);
+  // Initialize
+  updateSlides(0);
+
+  // Auto-advance every 5 seconds
+  setInterval(() => {
+    updateSlides((current + 1) % total);
+  }, 5000);
 }
 
 let map;
@@ -398,10 +420,6 @@ function initActiveSectionHighlight() {
       }
     }
 
-    if (!activeSection) {
-      activeSection = sections[0];
-    }
-
     if (activeSection?.id && idToLink.has(activeSection.id)) {
       setActive(`#${activeSection.id}`);
     } else {
@@ -591,7 +609,7 @@ function initActiveSectionHighlight() {
 
     setTimeout(() => {
       setActiveByCenter();
-      startAuto();
+      // startAuto();
     }, 80);
   }
 
@@ -599,5 +617,81 @@ function initActiveSectionHighlight() {
     if (window.innerWidth <= 768) {
       document.querySelectorAll(".carousel-container").forEach(initMainCarouselSnap);
     }
+  });
+})();
+
+(function initWhatsAppModal() {
+  const modal = document.getElementById("unit-modal");
+  const closeBtn = document.querySelector(".unit-modal-close");
+  const unitButtons = document.querySelectorAll(".unit-btn");
+  let pendingMessage = "";
+
+  if (!modal || !closeBtn) return;
+
+  function openModal(msg) {
+    pendingMessage = msg || "";
+    modal.classList.add("active");
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    pendingMessage = "";
+  }
+
+  function handleWhatsAppClick(e) {
+    const link = e.currentTarget;
+    e.preventDefault();
+    
+    // Extract 'text' param if exists
+    let textParam = "";
+    try {
+        const url = new URL(link.href);
+        textParam = url.searchParams.get("text");
+    } catch(err) {
+        // Fallback if href is not a full URL (though it should be)
+    }
+    
+    openModal(textParam);
+  }
+
+  // Intercept all clicks on links containing 'wa.me' or 'api.whatsapp.com'
+  document.body.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (link) {
+      handleWhatsAppClick({ currentTarget: link, preventDefault: () => e.preventDefault() });
+    }
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+
+  unitButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const unit = btn.dataset.unit;
+      let phone = "";
+      
+      if (unit === "gramame") {
+        phone = "5583987731766";
+      } else if (unit === "caminho_do_sol") {
+        phone = "558321786926"; 
+      }
+
+      if (phone) {
+        let finalUrl = `https://wa.me/${phone}`;
+        if (pendingMessage) {
+          finalUrl += `?text=${encodeURIComponent(pendingMessage)}`;
+        }
+        window.open(finalUrl, "_blank", "noopener");
+        closeModal();
+      }
+    });
   });
 })();

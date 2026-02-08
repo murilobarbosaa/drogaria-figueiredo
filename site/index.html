@@ -14,12 +14,17 @@
       content="
   default-src 'self';
   img-src 'self' data: https:;
-  script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://unpkg.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.gstatic.com https://unpkg.com;
   style-src  'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
   font-src   'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-  connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com;
-  frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://unpkg.com;
+  base-uri 'self'; form-action 'self'"
     />
+    <script>
+      window.CONFIG = {
+        GOOGLE_MAPS_API_KEY: "AIzaSyBliEnMz-jYzBeozgxRTgmpWmv136hqooo"
+      };
+    </script>
     <meta content="nosniff" http-equiv="X-Content-Type-Options" />
     <meta content="strict-origin-when-cross-origin" name="Referrer-Policy" />
     <meta content="geolocation=(), microphone=(), camera=()" http-equiv="Permissions-Policy" />
@@ -254,18 +259,19 @@
         </button>
         <ul class="nav-menu" id="nav-menu">
           <li><a href="#home-carousel">Promoções</a></li>
-          <li><a href="#services">Serviços</a></li>
           <li><a href="#instagram">Instagram</a></li>
-          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
           <li><a href="#location">Localização</a></li>
-          <li><a href="#ofertas-whatsapp">Ofertas</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#testimonials">Avaliações</a></li>
+
           <li class="nav-heart">
             <img src="./assets/images/logos/coracao.png" alt="Coração Drogaria Figueiredo" loading="lazy" />
           </li>
         </ul>
         <a href="https://wa.me/5583987731766" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Drogaria Figueiredo">
           <i class="fab fa-whatsapp"></i>
-          (83) 98773-1766
+          Peça Agora!
         </a>
       </div>
     </header>
@@ -283,9 +289,6 @@
       </section>
 
       <section class="carousel" id="home-carousel">
-        <div class="section-title">
-          <h2>Promoções em Destaque</h2>
-        </div>
         <div class="carousel-container">
           <div class="carousel-slides">
             <div class="slide">
@@ -326,162 +329,133 @@
         </div>
       </section>
 
-      <section class="benefits-modern" aria-label="Vantagens da Drogaria Figueiredo">
-        <div class="benefits-modern__wrap" role="list">
-          <article class="benefit" role="listitem" tabindex="0">
-            <div class="benefit__circle"><i data-lucide="credit-card" aria-hidden="true"></i></div>
-            <h3 class="benefit__title">Parcele em 5x</h3>
-            <p class="benefit__desc">No cartão</p>
-          </article>
+      <div class="container instagram-container" id="instagram" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="instagram-grid">
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">
+                <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
+              </div>
+              <div class="post-username">drogariafigueiredonovomilenio</div>
+            </div>
+            <div class="post-image">
+              <a href="https://www.instagram.com/p/CwYfhNCpMYx/" target="_blank" rel="noopener">
+                <img src="./assets/images/posts/primeiro_post.png" alt="post1" />
+              </a>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">2247 curtidas</div>
+              <p class="post-caption">
+                <strong>drogariafigueiredonovomilenio</strong><br />Precisando de medicamentos no conforto da sua casa? Na Drogaria Figueiredo é assim: pediu, chegou!<br />
+                🛵💨 Conte com nosso serviço de entrega rápida e receba tudo o que precisa sem sair de casa.
+              </p>
+            </div>
+          </div>
 
-          <article class="benefit" role="listitem" tabindex="0">
-            <div class="benefit__circle"><i data-lucide="truck" aria-hidden="true"></i></div>
-            <h3 class="benefit__title">Entrega grátis</h3>
-            <p class="benefit__desc">A partir de R$20</p>
-            <p class="benefit__desc_condition">Consulte condições</p>
-          </article>
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">
+                <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
+              </div>
+              <div class="post-username">drogariafigueiredonovomilenio</div>
+            </div>
+            <div class="post-image">
+              <a href="https://www.instagram.com/p/CeHXTKslM30/" target="_blank" rel="noopener">
+                <img src="./assets/images/posts/segundo_post.png" alt="post2" />
+              </a>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">1583 curtidas</div>
+              <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Sua saúde é nossa prioridade! ✨<br />Além da variedade de medicamentos, oferecemos serviços ambulatoriais completos para cuidar de você e sua família. Nossos profissionais estão prontos para te atender com segurança e qualidade.</p>
+            </div>
+          </div>
 
-          <article class="benefit" role="listitem" tabindex="0">
-            <div class="benefit__circle"><i data-lucide="qr-code" aria-hidden="true"></i></div>
-            <h3 class="benefit__title">Pague com Pix</h3>
-            <p class="benefit__desc">Rápido e seguro</p>
-          </article>
-
-          <article class="benefit" role="listitem" tabindex="0">
-            <div class="benefit__circle"><i data-lucide="percent" aria-hidden="true"></i></div>
-            <h3 class="benefit__title">Genéricos até 85%</h3>
-            <p class="benefit__desc">De desconto</p>
-          </article>
+          <div class="instagram-post">
+            <div class="post-header">
+              <div class="post-avatar">
+                <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
+              </div>
+              <div class="post-username">drogariafigueiredonovomilenio</div>
+            </div>
+            <div class="post-image">
+              <a href="https://www.instagram.com/p/CeEcQShu0mj/" target="_blank" rel="noopener">
+                <img src="./assets/images/posts/terceiro_post.png" alt="post3" />
+              </a>
+            </div>
+            <div class="post-content">
+              <div class="post-actions">
+                <i class="far fa-heart post-action heart"></i>
+                <i class="fas fa-comment post-action"></i>
+                <i class="fas fa-paper-plane post-action"></i>
+              </div>
+              <div class="post-likes">1312 curtidas</div>
+              <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Você sabe onde nos encontrar? 🤔 Nossa Loja 04 está localizada na Rua Geraldo Brandão Rocha, Novo Milênio - Gramame! 📍 Venha nos fazer uma visita, conhecer nossas promoções e contar com o melhor atendimento da região. Estamos te esperando!</p>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
       <section class="services" id="services">
         <div class="container">
-          <div class="section-title">
-            <h2>Nossos Serviços</h2>
+          <div class="benefits-modern__wrap" role="list" style="margin-bottom: 40px;">
+            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20parcelamento" target="_blank" rel="noopener">
+              <div class="benefit__circle"><i data-lucide="credit-card" aria-hidden="true"></i></div>
+              <h3 class="benefit__title">Parcele em 5x</h3>
+              <p class="benefit__desc">No cartão</p>
+            </a>
+
+            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20entrega%20gratis" target="_blank" rel="noopener">
+              <div class="benefit__circle"><i data-lucide="truck" aria-hidden="true"></i></div>
+              <h3 class="benefit__title">Entrega grátis</h3>
+              <p class="benefit__desc_condition">Consulte condições</p>
+            </a>
+
+            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20pagamento%20com%20pix" target="_blank" rel="noopener">
+              <div class="benefit__circle"><i data-lucide="qr-code" aria-hidden="true"></i></div>
+              <h3 class="benefit__title">Pague com Pix</h3>
+              <p class="benefit__desc">Rápido e seguro</p>
+            </a>
+
+            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20desconto%20em%20genericos" target="_blank" rel="noopener">
+              <div class="benefit__circle"><i data-lucide="percent" aria-hidden="true"></i></div>
+              <h3 class="benefit__title">Genéricos até 85%</h3>
+              <p class="benefit__desc">De desconto</p>
+            </a>
           </div>
           <div class="services-grid">
-            <div class="service-card">
+            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20aplicacao%20de%20injetaveis" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fas fa-syringe"></i></div>
               <h3>Aplicação de Injetáveis</h3>
               <p>Administração de medicamentos por farmacêutico habilitado, mediante prescrição, em sala apropriada.</p>
-            </div>
-            <div class="service-card">
+            </a>
+            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20recarga%20de%20passe%20legal" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
               <h3>Recarga de Passe Legal</h3>
               <p>Faça recargas das principais operadoras direto no caixa, de forma rápida e prática.</p>
-            </div>
-            <div class="service-card">
+            </a>
+            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20fazer%20um%20pedido%20para%20entrega" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fas fa-motorcycle"></i></div>
               <h3>Entrega Rápida</h3>
               <p>Receba seus produtos em casa. Consulte cobertura e horários de entrega.</p>
-            </div>
+            </a>
           </div>
           <div class="section-cta">
-            <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20orcamento%20de%20um%20servico" target="_blank" rel="noopener">Quero orçar um serviço</a>
+            <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20orcamento%20de%20um%20servico" target="_blank" rel="noopener">Fale Conosco</a>
           </div>
         </div>
       </section>
 
-      <section class="instagram-promos" id="instagram">
-        <div class="container instagram-container">
-          <div class="section-title">
-            <h2>Instagram</h2>
-          </div>
-          <div class="instagram-grid">
-            <div class="instagram-post">
-              <div class="post-header">
-                <div class="post-avatar">
-                  <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
-                </div>
-                <div class="post-username">drogariafigueiredonovomilenio</div>
-              </div>
-              <div class="post-image">
-                <img src="./assets/images/posts/primeiro_post.png" alt="post1" />
-              </div>
-              <div class="post-content">
-                <div class="post-actions">
-                  <i class="far fa-heart post-action heart"></i>
-                  <i class="fas fa-comment post-action"></i>
-                  <i class="fas fa-paper-plane post-action"></i>
-                </div>
-                <div class="post-likes">2247 curtidas</div>
-                <p class="post-caption">
-                  <strong>drogariafigueiredonovomilenio</strong><br />Precisando de medicamentos no conforto da sua casa? Na Drogaria Figueiredo é assim: pediu, chegou!<br />
-                  🛵💨 Conte com nosso serviço de entrega rápida e receba tudo o que precisa sem sair de casa.
-                </p>
-              </div>
-            </div>
 
-            <div class="instagram-post">
-              <div class="post-header">
-                <div class="post-avatar">
-                  <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
-                </div>
-                <div class="post-username">drogariafigueiredonovomilenio</div>
-              </div>
-              <div class="post-image">
-                <img src="./assets/images/posts/segundo_post.png" alt="post2" />
-              </div>
-              <div class="post-content">
-                <div class="post-actions">
-                  <i class="far fa-heart post-action heart"></i>
-                  <i class="fas fa-comment post-action"></i>
-                  <i class="fas fa-paper-plane post-action"></i>
-                </div>
-                <div class="post-likes">1583 curtidas</div>
-                <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Sua saúde é nossa prioridade! ✨<br />Além da variedade de medicamentos, oferecemos serviços ambulatoriais completos para cuidar de você e sua família. Nossos profissionais estão prontos para te atender com segurança e qualidade.</p>
-              </div>
-            </div>
-
-            <div class="instagram-post">
-              <div class="post-header">
-                <div class="post-avatar">
-                  <img src="./assets/images/logos/logo-instagram.png" alt="Logo Instagram" />
-                </div>
-                <div class="post-username">drogariafigueiredonovomilenio</div>
-              </div>
-              <div class="post-image">
-                <img src="./assets/images/posts/terceiro_post.png" alt="post3" />
-              </div>
-              <div class="post-content">
-                <div class="post-actions">
-                  <i class="far fa-heart post-action heart"></i>
-                  <i class="fas fa-comment post-action"></i>
-                  <i class="fas fa-paper-plane post-action"></i>
-                </div>
-                <div class="post-likes">1312 curtidas</div>
-                <p class="post-caption"><strong>drogariafigueiredonovomilenio</strong>Você sabe onde nos encontrar? 🤔 Nossa Loja 04 está localizada na Rua Geraldo Brandão Rocha, Novo Milênio - Gramame! 📍 Venha nos fazer uma visita, conhecer nossas promoções e contar com o melhor atendimento da região. Estamos te esperando!</p>
-              </div>
-            </div>
-          </div>
-          <div class="instagram-cta">
-            <a href="https://www.instagram.com/drogariafigueiredonovomilenio" class="instagram-btn" target="_blank" rel="noopener"> <i class="fab fa-instagram"></i> Siga-nos no Instagram </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="about" id="about">
-        <div class="container">
-          <div class="section-title">
-            <h2>Sobre Nós</h2>
-          </div>
-          <div class="about-content">
-            <div class="about-image">
-              <img src="./assets/images/store/interior.png" alt="" />
-            </div>
-            <div class="about-text">
-              <h3>Drogaria Figueiredo</h3>
-              <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
-              <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
-              <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 07h às 20h, sempre prontos para atendê-lo com excelência.</p>
-            </div>
-          </div>
-        </div>
-        <div class="section-cta" style="margin-top: 12px">
-          <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20duvida%20com%20o%20farmaceutico" target="_blank" rel="noopener">Falar com o farmacêutico</a>
-        </div>
-      </section>
 
       <section class="location" id="location">
         <div class="container">
@@ -497,16 +471,30 @@
               </a>
             </div>
             <div class="locations-list">
-              <div class="location-item active" data-lat="-7.199525303219811" data-lng="-34.86493043376333" data-name="Valentina" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00" data-gmaps-url="https://www.google.com/maps/place/Drogaria+Figueiredo/@-7.200805,-34.8727612,15z/data=!4m10!1m2!2m1!1sDrogaria+Figueiredo!3m6!1s0x7acc1230f60e357:0x7973b8f9f716a103!8m2!3d-7.1995562!4d-34.8649255!15sChNEcm9nYXJpYSBGaWd1ZWlyZWRvWhUiE2Ryb2dhcmlhIGZpZ3VlaXJlZG-SAQhwaGFybWFjeaoBWAoNL2cvMTFiNmQ1ZHByOQoLL2cvMXRrdjl6czQQATIfEAEiGwqjHOjVA40N6ECcwvfWbbpvrb5eSJzi47rXVTIXEAIiE2Ryb2dhcmlhIGZpZ3VlaXJlZG_gAQA!16s%2Fg%2F11h6t7sq76?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D">
+              <div class="location-item active featured-unit" data-lat="-7.199525303219811" data-lng="-34.86493043376333" data-name="Valentina" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00" data-gmaps-url="https://www.google.com/maps/place/Drogaria+Figueiredo/@-7.200805,-34.8727612,15z/data=!4m10!1m2!2m1!1sDrogaria+Figueiredo!3m6!1s0x7acc1230f60e357:0x7973b8f9f716a103!8m2!3d-7.1995562!4d-34.8649255!15sChNEcm9nYXJpYSBGaWd1ZWlyZWRvWhUiE2Ryb2dhcmlhIGZpZ3VlaXJlZG-SAQhwaGFybWFjeaoBWAoNL2cvMTFiNmQ1ZHByOQoLL2cvMXRrdjl6czQQATIfEAEiGwqjHOjVA40N6ECcwvfWbbpvrb5eSJzi47rXVTIXEAIiE2Ryb2dhcmlhIGZpZ3VlaXJlZG_gAQA!16s%2Fg%2F11h6t7sq76?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D">
                 <div class="unit-info">
                   <h3 class="unit-name">Unidade Gramame</h3>
                   <p class="unit-address">Rua Geraldo Brandão Rocha, 1022 - Gramame</p>
-                  <p class="unit-phone"><strong>Tel:</strong> (83) 3237-8355</p>
-                  <p class="unit-phone">(83) 98773-1766</p>
+                  <p class="unit-phone"><strong>Tel:</strong> (83) 98773-1766</p>
                   <div class="unit-hours-wrapper">
                     <ul class="hours-list">
                       <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
                       <li><strong>Dom:</strong> 07:00 - 20:00</li>
+                    </ul>
+                    <span class="hours-status"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-item featured-unit" data-lat="-7.217084" data-lng="-34.8376995" data-name="Caminho do Sol" data-weekday-hours="07:00-21:00" data-sunday-hours="07:00-13:00" data-gmaps-url="https://www.google.com/maps/place/Drogaria+Figueiredo+Mu%C3%A7umagro/@-7.217084,-34.8376995,15z">
+                <div class="unit-info">
+                  <h3 class="unit-name">Unidade Caminho do Sol</h3>
+                  <p class="unit-address">R. Domingos José da Paixão, 1530</p>
+                  <p class="unit-phone"><strong>Tel:</strong> (83) 2178-6926</p>
+                  <div class="unit-hours-wrapper">
+                    <ul class="hours-list">
+                      <li><strong>Seg - Sab:</strong> 07:00 : 21:00</li>
+                      <li><strong>Dom:</strong> 07:00 - 13:00</li>
                     </ul>
                     <span class="hours-status"></span>
                   </div>
@@ -575,20 +563,35 @@
                 </div>
               </div>
 
-              <div class="location-item" data-lat="-7.1642" data-lng="-34.8340" data-name="Bancários" data-weekday-hours="07:00-22:00" data-sunday-hours="08:00-19:00">
-                <div class="unit-info">
-                  <h3 class="unit-name">Unidade Muçumagro</h3>
-                  <div class="unit-status">
-                    <p class="status-text">Em Breve</p>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
 
           <div class="section-cta">
             <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20confirmar%20disponibilidade%20e%20horarios" target="_blank" rel="noopener">Confirmar disponibilidade</a>
           </div>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>Sobre Nós</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-image">
+              <img src="./assets/images/store/interior.png" alt="" />
+            </div>
+            <div class="about-text">
+              <h3>Drogaria Figueiredo</h3>
+              <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
+              <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
+              <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 07h às 20h, sempre prontos para atendê-lo com excelência.</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-cta" style="margin-top: 12px">
+          <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20duvida%20com%20o%20farmaceutico" target="_blank" rel="noopener">Falar com o farmacêutico</a>
         </div>
       </section>
 
@@ -636,23 +639,7 @@
         </div>
       </section>
 
-      <section id="ofertas-whatsapp">
-        <div class="container">
-          <div class="section-title">
-            <h2>Participe do nosso Grupo de Ofertas</h2>
-          </div>
 
-          <div class="ofertas-whatsapp-content">
-            <p>Seja o primeiro a saber das nossas melhores promoções, lançamentos e dicas de saúde. Acesse nosso grupo exclusivo no WhatsApp!</p>
-
-            <div class="section-cta">
-              <a href="https://chat.whatsapp.com/SEU_LINK_DE_CONVITE_AQUI" class="btn" target="_blank" rel="noopener">QUERO PARTICIPAR DO GRUPO</a>
-            </div>
-
-            <small class="aviso-privacidade">Sem spam! Apenas ofertas e novidades importantes.</small>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="modern-footer">
@@ -693,9 +680,7 @@
                 <li>
                   <a href="#location"><i class="fas fa-map-marker-alt"></i> Nossas Lojas</a>
                 </li>
-                <li>
-                  <a href="#ofertas-whatsapp"><i class="fas fa-gift"></i> Grupo de Ofertas</a>
-                </li>
+
               </ul>
             </div>
 
@@ -784,6 +769,24 @@
       <a href="https://wa.me/5583987731766" class="floating-btn" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i>
       </a>
+    </div>
+
+    <div id="unit-modal" class="unit-modal">
+      <div class="unit-modal-content">
+        <button class="unit-modal-close">&times;</button>
+        <h3>Escolha a Unidade</h3>
+        <p>Com qual unidade você deseja falar?</p>
+        <div class="unit-buttons">
+          <button class="unit-btn" data-unit="gramame">
+            <i class="fas fa-map-marker-alt"></i>
+            Unidade Gramame
+          </button>
+          <button class="unit-btn" data-unit="caminho_do_sol">
+            <i class="fas fa-map-marker-alt"></i>
+            Unidade Caminho do Sol
+          </button>
+        </div>
+      </div>
     </div>
 
     <script defer src="script.js"></script>

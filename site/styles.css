@@ -230,6 +230,12 @@ header {
   color: white;
 }
 
+.header-container .whatsapp-btn i {
+  font-size: 1.5rem !important;
+  margin-right: 4px;
+  margin-left: 2px;
+}
+
 .hamburger {
   display: none;
   cursor: pointer;
@@ -285,7 +291,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(60vh, 85vh, 90vh);
+  min-height: clamp(40vh, 50vh, 60vh);
   background-image: url(./assets/images/store/principal.png);
   background-size: cover;
   background-position: center;
@@ -343,27 +349,284 @@ section {
 
 .carousel {
   background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .carousel-container {
   position: relative;
-  width: clamp(85%, 90%, 95%);
+  width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-  border-radius: clamp(12px, 3vw, 24px);
-  overflow: hidden;
+  border-radius: 24px;
+  overflow: visible;
 }
 
 .carousel-slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  position: relative;
+  height: 60vh;
+  width: 100%;
 }
 
+@media (max-width: 1024px) {
+  .carousel-container {
+    width: 100%; /* Full width container */
+    overflow: hidden; /* Hide overflow outside container */
+  }
+
+  /* Slide sizing for mobile center mode */
+  .slide {
+    width: 70% !important;
+    left: 15% !important; /* Center the 70% slide (15% margin on each side) */
+  }
+
+  .carousel-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 101 !important;
+  }
+
+  .carousel-btn--prev {
+    left: 10px !important; /* Inside screen edge */
+  }
+
+  .carousel-btn--next {
+    right: 10px !important; /* Inside screen edge */
+  }
+
+  .carousel-slides {
+    height: 250px;
+  }
+
+  .slide.next {
+    transform: translateX(20%) scale(0.85) !important; /* Smaller ears for tablet */
+  }
+
+  .slide.prev {
+    transform: translateX(-20%) scale(0.85) !important; /* Smaller ears for tablet */
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel-container {
+    position: relative !important;
+    display: block !important;
+  }
+
+  .carousel-slides {
+    height: 180px; /* Even shorter for mobile phones */
+    padding: 0 !important; /* Remove padding to avoid offset */
+    margin: 0 !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+
+  /* Full width slide for mobile, no side cards visible */
+  .slide {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    transform: none !important; /* Reset transforms */
+    opacity: 0 !important; /* Hide all by default */
+    border-radius: 16px !important; /* Slightly smaller radius */
+  }
+
+  .slide.active {
+    opacity: 1 !important;
+    z-index: 10 !important;
+    transform: none !important;
+  }
+
+  /* Hide prev/next slides completely */
+  /* Hide prev/next slides completely */
+  .slide.next,
+  .slide.prev {
+    opacity: 0 !important;
+    transform: none !important;
+    /* display: none !important;  <-- REMOVED to allow transition/existence */
+    pointer-events: none !important; /* Prevent clicks on hidden slides */
+  }
+
+  /* Smaller arrows - Ensure high Z-index/Visibility */
+  .carousel-btn {
+    width: 36px !important; /* Slightly bigger for touch target */
+    height: 36px !important;
+    font-size: 1rem !important; 
+    display: flex !important;
+    opacity: 1 !important;
+    z-index: 200 !important; /* Force on top */
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(255, 255, 255, 0.9) !important; /* Ensure background is visible */
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+    border-radius: 50% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+  }
+  
+  .carousel-btn--prev {
+    left: 8px !important;
+  }
+  .carousel-btn--next {
+    right: 8px !important;
+  }
+  
+  /* Dots */
+  .carousel-dots {
+    bottom: 15px !important;
+    z-index: 200 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    display: flex !important;
+  }
+
+  /* Ensure image fills the slide */
+  .slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  /* Constrain Carousel Width */
+  .carousel-slides {
+    width: 92% !important; /* Reduced from 100% */
+    margin: 0 auto !important;
+  }
+  
+  /* Constrain Instagram Posts Width */
+  .instagram-grid {
+    width: 92% !important;
+    max-width: 340px !important; /* Reduced from 400px to make cards smaller */
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Darker border and slightly smaller cards appearance */
+  .instagram-post {
+    border: 1px solid #d1d1d1 !important; /* Visible border */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; /* Slightly darker shadow */
+  }
+
+  /* Increase spacing below Hero for mobile */
+  .hero {
+    padding-bottom: 40px !important; /* Reduced from 80px to 40px */
+  }
+
+  /* Benefits: 2x2 Grid, Text Hidden */
+  .benefits-modern__wrap {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .benefit__desc, 
+  .benefit__desc_condition {
+    display: none !important;
+  }
+  .benefit {
+    padding: 15px 10px !important; /* Compact */
+  }
+
+  /* Services: Force 1 Column Stack */
+  .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important; /* Full width of container */
+    max-width: none !important; /* Remove restriction */
+    margin: 0 auto !important;
+    gap: 16px !important;
+    margin-top: 40px !important; /* Increase distance from benefits */
+  }
+  .service-card {
+    width: 100% !important;
+    max-width: none !important;
+    justify-content: center !important;
+  }
+  .service-card .service-icon {
+    margin: 0 auto 15px auto !important; /* Center icon */
+  }
+
+  /* Footer: Center Title and Effect */
+  .footer-logo {
+    display: table !important; /* Trick to fit content or simplify centered block */
+    margin: 0 auto 24px auto !important;
+    text-align: center !important;
+  }
+  .footer-logo::after {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .footer-description {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+
+
 .slide {
-  min-width: 100%;
-  border-radius: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0.6s;
+  opacity: 1; /* Removing opacity fade */
+  z-index: 1;
   overflow: hidden;
-  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Shadow overlay for inactive slides */
+.slide::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Shadow over them */
+  transition: background-color 0.6s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.slide.active {
+  transform: translateX(0) scale(1);
+  z-index: 10;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.slide.active::after {
+  background-color: transparent;
+}
+
+.slide.next {
+  transform: translateX(25%) scale(0.85); /* Reduced visibility and slightly larger scale */
+  z-index: 5;
+}
+
+.slide.prev {
+  transform: translateX(-25%) scale(0.85); /* Reduced visibility and slightly larger scale */
+  z-index: 5;
 }
 
 .slide picture {
@@ -377,7 +640,8 @@ section {
 .slide img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: inherit;
 }
 
@@ -385,35 +649,42 @@ section {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--white);
+  color: var(--primary);
   border: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s;
-  z-index: 10;
+  opacity: 1;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .carousel-container:hover .carousel-btn {
   opacity: 1;
 }
 
+.carousel-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
 .carousel-btn--prev {
-  left: 1rem;
+  left: -80px;
 }
 
 .carousel-btn--next {
-  right: 1rem;
+  right: -80px;
 }
 
 .carousel-btn i {
-  font-size: 1rem;
-  color: #333;
+  font-size: 1.2rem;
+  color: var(--primary);
 }
 
 .carousel-dots {
@@ -518,13 +789,22 @@ section {
 .benefit__title {
   font-size: clamp(1rem, 1.1vw, 1.15rem);
   font-weight: 800;
-  color: #1f2a37;
+  color: var(--primary);
   line-height: 1.15;
 }
 .benefit__desc {
   font-size: 0.95rem;
   color: #4b5563;
   margin-top: 2px;
+}
+
+/* Reset for benefit cards as links */
+.benefit {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
 }
 
 @media (max-width: 1024px) {
@@ -561,6 +841,8 @@ section {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .about-text {
@@ -735,7 +1017,8 @@ section {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 30vw, 300px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 360px));
+  justify-content: center;
   gap: clamp(20px, 4vw, 40px);
 }
 
@@ -746,6 +1029,13 @@ section {
   text-align: center;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 .service-card:hover {
@@ -754,21 +1044,40 @@ section {
 }
 
 .service-icon {
-  font-size: clamp(2rem, 5vw, 3rem);
+  width: var(--benefit-size);
+  height: var(--benefit-size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue) calc(50% - (var(--transition-band) / 2)), color-mix(in srgb, var(--brand-blue) 50%, var(--brand-yellow) 50%) 50%, var(--brand-yellow) calc(50% + (var(--transition-band) / 2)), var(--brand-yellow) 100%) border-box;
+  border: var(--benefit-ring) solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
   color: var(--primary);
   margin-bottom: clamp(16px, 3vw, 24px);
-  display: inline-block;
+  display: inline-grid;
+  font-size: 1.5rem;
+}
+
+@supports not (color: color-mix(in srgb, black, white)) {
+  .service-icon {
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue) 43%, #2a5fd8 47%, #f6d44a 53%, var(--brand-yellow) 57%, var(--brand-yellow) 100%) border-box;
+  }
 }
 
 .service-card h3 {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 700;
   margin-bottom: clamp(12px, 2vw, 20px);
   color: var(--primary);
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
   line-height: 1.3;
 }
 
 .location {
-  background-color: var(--white);
+  background-color: var(--primary);
+}
+
+.location .section-title h2 {
+  color: var(--white);
 }
 
 .location-container {
@@ -805,7 +1114,7 @@ section {
 }
 
 .location-item {
-  background-color: var(--light-gray);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   padding: 20px;
   cursor: pointer;
@@ -818,13 +1127,25 @@ section {
 }
 
 .location-item:hover {
-  background-color: #e9eff7;
+  background-color: rgba(255, 255, 255, 1);
   transform: translateY(-5px);
 }
 
 .location-item.active {
-  background-color: #e9eff7;
-  border-left-color: var(--primary);
+  background-color: var(--white);
+  border-left: 8px solid var(--secondary);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  z-index: 2;
+}
+
+.location-item.featured-unit {
+  background-color: var(--white);
+  border-left: 8px solid var(--secondary);
+}
+
+.location-item.featured-unit:hover {
+  background-color: var(--white);
 }
 
 .location-item .unit-name {
@@ -936,7 +1257,7 @@ section {
 
 .testimonials {
   padding-bottom: 120px;
-  background-color: var(--light-gray);
+  background-color: var(--white);
 }
 
 .testimonials-grid {
@@ -1027,26 +1348,7 @@ section {
   margin-bottom: 40px;
 }
 
-.btn-ofertas-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background-color: var(--secondary);
-  color: var(--dark-gray);
-  padding: 12px 30px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: var(--transition);
-  border: none;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
 
-.btn-ofertas-whatsapp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
 
 .btn-ofertas-whatsapp i {
   font-size: 1.3rem;
@@ -1487,20 +1789,22 @@ section {
 }
 
 .floating-btn {
-  width: clamp(50px, 12vw, 70px);
-  height: clamp(50px, 12vw, 70px);
+  width: clamp(55px, 12vw, 72px); /* Reduced from 80px, max 72px */
+  height: clamp(55px, 12vw, 72px);
   background-color: #25d366;
   color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.6rem, 4vw, 2.2rem); /* Reduced icon size */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
 }
+
+
 
 .floating-btn:hover {
   transform: scale(1.1);
@@ -1774,21 +2078,7 @@ section,
 [id] {
   scroll-margin-top: calc(var(--header-h) + 16px);
 }
-
-.carousel-container {
-  width: 90% !important;
-  max-width: 1120px !important;
-  margin: 0 auto !important;
-  border-radius: 1.5rem;
-  overflow: hidden;
-}
-.slide img {
-  width: 100%;
-  height: auto !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  border-radius: inherit;
-}
+/* REMOVED CAROUSEL OVERRIDES */
 
 body.no-scroll {
   overflow: hidden;
@@ -1850,21 +2140,9 @@ header {
   display: none !important;
 }
 
-.hero + .carousel {
-  margin-top: -10px !important;
-}
 
-@media (max-width: 991px) {
-  .carousel-container {
-    width: 92% !important;
-  }
-  .slide img {
-    height: clamp(220px, 55vw, 360px) !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-    border-radius: inherit;
-  }
-}
+
+
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .carousel-container {
@@ -1875,11 +2153,7 @@ header {
   .slide img {
     border-radius: inherit !important;
   }
-  .slide img {
-    height: clamp(260px, 40vw, 420px) !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-  }
+
 }
 
 @media (max-width: 640px) {
@@ -2184,7 +2458,8 @@ header {
   .testimonial-card {
     padding: 14px 16px !important;
     border-radius: 12px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important; /* Darker shadow */
+    border: 1px solid #e1e1e1 !important; /* Add visible border */
   }
   .testimonial-text {
     font-size: 0.95rem !important;
@@ -2810,7 +3085,7 @@ footer.modern-footer {
   }
   .carousel-container.carousel--snap .slide img {
     width: 100% !important;
-    height: clamp(220px, 55vw, 360px) !important;
+    /* height constraint removed */
     object-fit: cover !important;
     border-radius: inherit;
     display: block;
@@ -3134,10 +3409,7 @@ footer.modern-footer {
     margin-bottom: 36px !important;
   }
 
-  .carousel-container .slide img {
-    height: clamp(260px, 52vw, 420px) !important;
-    object-fit: cover !important;
-  }
+
 
   .services-grid .service-card {
     aspect-ratio: 1 / 1 !important;
@@ -3564,5 +3836,345 @@ footer.modern-footer {
     margin-right: 0 !important;
     margin: 0 auto !important;
     justify-content: center !important;
+  }
+}
+
+/* WhatsApp Unit Modal */
+.unit-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.unit-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.unit-modal-content {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.unit-modal.active .unit-modal-content {
+  transform: translateY(0);
+}
+
+.unit-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.unit-modal-close:hover {
+  color: var(--primary);
+}
+
+.unit-modal h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.unit-modal p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.unit-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.unit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.unit-btn:hover {
+  background-color: #1d4885;
+}
+
+.unit-btn i {
+  font-size: 1.1rem;
+}
+
+/* Tablet Specific Overrides - Appended to end for specificity */
+@media (min-width: 768px) and (max-width: 1366px) {
+  #home-carousel {
+    padding-top: 10px !important;
+  }
+
+  .instagram-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    align-items: stretch !important; /* Ensure same height */
+    gap: 25px !important;
+    padding-bottom: 20px !important; /* Spacing for scrollbar/shadow */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .instagram-grid > * {
+    max-width: 300px !important;
+    height: auto !important; /* Let flex stretch handle height */
+  }
+
+  /* Adjust "Benefits" (4 items) 2x2 grid */
+  [role="list"],
+  .benefits-modern__wrap,
+  .benefits-grid {
+    grid-template-columns: repeat(2, 240px) !important; /* Reduce width */
+    justify-content: center !important;
+    gap: 20px !important;
+    display: grid !important;
+  }
+
+  /* Adjust "Services" (3 items) to be single column, wider width */
+  .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  .services-grid > * {
+    width: 500px !important; /* Match width of 2 benefits + gap */
+    max-width: 90% !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Center icons in services */
+  .services-grid .service-icon {
+    margin: 0 auto 10px auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Increase distance between "Benefits" (2x2) and "Services" (3 stacked) */
+  .services-grid {
+    margin-top: 25px !important;
+  }
+}
+
+/* Enable Horizontal Scroll for Testimonials on Tablet/Mobile (max-width: 1366px) */
+@media (max-width: 1366px) {
+  .testimonials-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 20px !important;
+    padding-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+  }
+
+  .testimonials-grid > .testimonial-card {
+    flex: 0 0 280px !important; /* Slightly reduced from 300px */
+    width: 280px !important;
+    max-width: 280px !important;
+    margin: 0 !important;
+    height: auto !important; /* Ensure they stretch if container has align-items stretch */
+  }
+  
+  /* Optional: Ensure container stretches heights */
+  .testimonials-grid {
+    align-items: stretch !important;
+  }
+
+  /* Footer Quick Links: 2 columns on tablet/mobile */
+  .footer-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px 12px !important; /* Reduced gap */
+    text-align: center !important;
+  }
+
+  /* Center all footer links and make them larger */
+  .footer-links li {
+    text-align: center !important;
+    width: 100% !important;
+  }
+  
+  .footer-links a {
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 14px !important; /* Increased size */
+    font-size: 1.05rem !important; /* Larger text */
+  }
+
+  /* Reset separate styling for last item so it fits in grid */
+  .footer-links li:last-child {
+    text-align: center !important;
+    margin-top: 0 !important;
+    grid-column: auto !important;
+    width: 100% !important; /* Force full width */
+  }
+
+  .footer-links li:last-child a {
+    justify-content: center !important;
+    max-width: none !important;
+    margin: 0 !important;
+    width: 100% !important; /* Force full width */
+  }
+
+  /* Slightly increase footer base font size */
+  .modern-footer {
+    font-size: 1rem !important;
+  }
+  .footer-column p, .footer-links a {
+    font-size: 1rem !important;
+  }
+
+  /* Increase Contact items size */
+  .contact-item {
+    padding: 12px 0 !important;
+  }
+  .contact-icon {
+    width: 48px !important; /* Larger icon box - increased from 44px */
+    height: 48px !important;
+  }
+  .contact-icon i {
+    font-size: 1.2rem !important;
+  }
+
+  /* Increase Social Links size */
+  .social-link {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.4rem !important;
+  }
+  .social-section .social-links {
+    gap: 15px !important;
+  }
+
+  /* Reduce spacing for sections on tablet */
+  section {
+    padding: 30px 0 !important; /* Visual vertical space reduction */
+  }
+
+  /* Specific adjustment for "About Us" spacing */
+  #about {
+    padding-top: 40px !important; /* Increased back for balance */
+  }
+
+  .section-cta {
+    margin-top: 30px !important; /* Increased back for balance */
+  }
+
+  .section-title {
+    margin-bottom: 30px !important; /* Space below title */
+  }
+
+  /* Reduce width of "Important Information" (Health Alert) */
+  .footer-health-alert {
+    max-width: 60% !important; /* Reduced from 80% */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Increase size of "Payment Methods" divs */
+  .payment-method {
+    padding: 12px 24px !important; /* Increased size again */
+  }
+  .payment-method i {
+    font-size: 1.5rem !important; /* Increased size */
+  }
+  .payment-method span {
+    font-size: 1.1rem !important; /* Increased size */
+  }
+
+  /* Reduce width of footer description and center it */
+  .footer-description {
+    max-width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important; /* Ensure text is centered if not already */
+  }
+}
+/* FINAL OVERRIDE for Mobile Services Width symmetry */
+@media (max-width: 768px) {
+  .services-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 0 0 !important; /* Reduced to match gap (12px) */
+    padding: 0 16px !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important; /* Match benefits gap */
+  }
+  
+  .services-grid .service-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* About Title Spacing */
+  .about-text h3 {
+    margin-top: 28px !important; /* Slightly reduced from 35px */
+    margin-bottom: 18px !important; /* Slightly reduced from 25px */
+  }
+
+  /* Footer Contact Items */
+  .contact-item {
+    gap: 30px !important; 
+    margin-bottom: 8px !important;
+    padding-left: 15px !important; /* Shift entire block right */
+  }
+}
+
+/* FINAL OVERRIDE for Floating WhatsApp Button Size */
+@media (max-width: 1366px) {
+  .floating-btn {
+    width: 72px !important; /* Reduced from 80px */
+    height: 72px !important;
+    font-size: 2.2rem !important; /* Reduced icon size */
+    bottom: 25px !important; /* Adjusted position */
+    right: 25px !important;
   }
 }
