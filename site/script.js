@@ -5,14 +5,14 @@ function initHamburgerMenu() {
 
   btn.addEventListener("click", () => {
     nav.classList.toggle("active");
-    btn.innerHTML = nav.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    btn.classList.toggle("active");
   });
 
   document.querySelectorAll(".nav-menu a").forEach((link) => {
     link.addEventListener("click", () => {
       if (nav.classList.contains("active")) {
         nav.classList.remove("active");
-        btn.innerHTML = '<i class="fas fa-bars"></i>';
+        btn.classList.remove("active");
       }
     });
   });
@@ -37,7 +37,7 @@ function initSmoothScroll() {
 }
 
 function initBannerWhatsApp() {
-  const phone = "5583987731766";
+  const phone = "558321786926";
   const msg = "Vim pelo site! Quero aproveitar as promoções.";
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
@@ -99,51 +99,7 @@ function initLocationStatus() {
   });
 }
 
-function initCarousel() {
-  const slides = document.querySelectorAll(".slide");
-  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
-  const prevBtn = document.querySelector(".carousel-btn--prev");
-  const nextBtn = document.querySelector(".carousel-btn--next");
-  
-  if (!slides.length) return;
 
-  let current = 0;
-  const total = slides.length;
-
-  const updateSlides = (index) => {
-    slides.forEach(slide => {
-      slide.classList.remove("active", "prev", "next");
-    });
-    
-    dots.forEach(dot => dot.classList.remove("active"));
-    if (dots[index]) dots[index].classList.add("active");
-
-    // Circular indices
-    const nextIndex = (index + 1) % total;
-    const prevIndex = (index - 1 + total) % total;
-
-    slides[index].classList.add("active");
-    slides[nextIndex].classList.add("next");
-    slides[prevIndex].classList.add("prev");
-
-    current = index;
-  };
-
-  prevBtn?.addEventListener("click", () => updateSlides((current - 1 + total) % total));
-  nextBtn?.addEventListener("click", () => updateSlides((current + 1) % total));
-  
-  dots.forEach((dot, idx) => {
-    dot.addEventListener("click", () => updateSlides(idx));
-  });
-
-  // Initialize
-  updateSlides(0);
-
-  // Auto-advance every 5 seconds
-  setInterval(() => {
-    updateSlides((current + 1) % total);
-  }, 5000);
-}
 
 let map;
 const itemToMarker = new Map();
@@ -285,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initLikeButtons();
   initLocationStatus();
-  initCarousel();
+
   initBannerWhatsApp();
   initActiveSectionHighlight();
 });
@@ -362,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function closeOnDesktop() {
-      if (window.innerWidth >= 992 && nav.classList.contains("active")) {
+      if (window.innerWidth >= 1200 && nav.classList.contains("active")) {
         nav.classList.remove("active");
         syncUI();
       }
@@ -449,249 +405,529 @@ function initActiveSectionHighlight() {
   });
 }
 
-(function () {
-  function initSnapCarouselFlex(container) {
-    if (!container) return;
-    const items = Array.from(container.children);
-    if (!items.length) return;
+function initArrowCarousel() {
+  const checkAndInit = () => {
+    const isMobile = window.innerWidth <= 1024;
+    const selectors = [".testimonials-grid"];
 
-    let dotsWrap = container.nextElementSibling;
-    if (!dotsWrap || !dotsWrap.classList.contains("snap-dots")) {
-      dotsWrap = document.createElement("div");
-      dotsWrap.className = "snap-dots";
-      items.forEach((_, i) => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "snap-dot";
-        b.setAttribute("aria-label", `Ir para item ${i + 1}`);
-        b.addEventListener("click", () => scrollToIndex(i));
-        dotsWrap.appendChild(b);
-      });
-      container.insertAdjacentElement("afterend", dotsWrap);
-    }
-    const dots = Array.from(dotsWrap.querySelectorAll(".snap-dot"));
+    selectors.forEach((selector) => {
+      const originalContainer = document.querySelector(selector);
+      if (!originalContainer) return;
 
-    function updateActive() {
-      const rect = container.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
+      const isProcessed = originalContainer.classList.contains("arrow-carousel-processed");
 
-      let active = 0,
-        best = Infinity;
-      items.forEach((el, i) => {
-        const r = el.getBoundingClientRect();
-        const c = r.left + r.width / 2;
-        const d = Math.abs(c - center);
-        if (d < best) {
-          best = d;
-          active = i;
+      if (isMobile && !isProcessed) {
+        // Initialize Carousel
+        // Create wrapper and track
+        const wrapper = document.createElement("div");
+        wrapper.className = "arrow-carousel-wrapper";
+
+        const track = document.createElement("div");
+        track.className = "arrow-carousel-track";
+
+        // Move children to track
+        const items = Array.from(originalContainer.children);
+        if (!items.length) return;
+
+        items.forEach((item) => {
+          track.appendChild(item);
+          item.classList.add("arrow-carousel-item");
+        });
+
+        // Clear original container and append wrapper
+        originalContainer.innerHTML = "";
+        originalContainer.appendChild(wrapper);
+        wrapper.appendChild(track);
+
+        // Mark as processed
+        originalContainer.classList.add("arrow-carousel-processed");
+
+        // Add Arrows
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "carousel-btn carousel-btn--prev";
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "carousel-btn carousel-btn--next";
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+        wrapper.appendChild(prevBtn);
+        wrapper.appendChild(nextBtn);
+
+        // Logic
+        let currentIndex = 0;
+        const totalItems = items.length;
+
+        function updateScroll() {
+          const itemWidth = track.clientWidth; // Width of one item (100% of track)
+          track.scrollTo({
+            left: currentIndex * itemWidth,
+            behavior: "smooth",
+          });
         }
-      });
 
-      items.forEach((el, i) => el.classList.toggle("is-active", i === active));
-      dots.forEach((d, i) => d.classList.toggle("is-active", i === active));
-    }
+        prevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+          updateScroll();
+        });
 
-    function scrollToIndex(i) {
-      const el = items[i];
-      if (!el) return;
-      const target = el.offsetLeft + el.offsetWidth / 2 - container.clientWidth / 2;
-      container.scrollTo({ left: target, behavior: "smooth" });
-    }
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          currentIndex = (currentIndex + 1) % totalItems;
+          updateScroll();
+        });
 
-    updateActive();
-    container.addEventListener("scroll", () => requestAnimationFrame(updateActive), { passive: true });
-    window.addEventListener("resize", () => requestAnimationFrame(updateActive));
-    setTimeout(updateActive, 50);
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll(".instagram-grid, .services-grid").forEach(initSnapCarouselFlex);
-    }
-  });
-})();
-
-(function () {
-  function initMainCarouselSnap(root) {
-    const container = root || document.querySelector(".carousel-container");
-    if (!container) return;
-    const track = container.querySelector(".carousel-slides");
-    const slides = Array.from(track?.children || []);
-    if (!track || slides.length === 0) return;
-
-    container.classList.add("carousel--snap");
-    track.style.transform = "";
-
-    const dotsWrap = container.querySelector(".carousel-dots");
-    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll(".carousel-dot")) : [];
-
-    function setActiveByCenter() {
-      const rect = container.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
-      let active = 0,
-        best = Infinity;
-      slides.forEach((el, i) => {
-        const r = el.getBoundingClientRect();
-        const c = r.left + r.width / 2;
-        const d = Math.abs(c - center);
-        if (d < best) {
-          best = d;
-          active = i;
+        // Store updateScroll for resize events
+        originalContainer._updateCarouselScroll = updateScroll;
+      } else if (!isMobile && isProcessed) {
+        // Destroy Carousel and restore original structure
+        const wrapper = originalContainer.querySelector(".arrow-carousel-wrapper");
+        const track = wrapper?.querySelector(".arrow-carousel-track");
+        
+        if (track) {
+            // Move items back to container
+            const items = Array.from(track.children);
+            items.forEach(item => {
+                if (item.classList.contains("arrow-carousel-item")) {
+                    item.classList.remove("arrow-carousel-item");
+                    // Remove specific class fixes
+                    item.style.width = "";
+                    item.style.maxWidth = "";
+                    item.style.flex = "";
+                }
+                originalContainer.appendChild(item);
+            });
         }
-      });
-      slides.forEach((el, i) => el.classList.toggle("is-active", i === active));
-      dots.forEach((d, i) => d.classList.toggle("active", i === active));
-      return active;
-    }
+        
+        // Remove wrapper
+        if (wrapper) wrapper.remove();
+        
+        // Remove class
+        originalContainer.classList.remove("arrow-carousel-processed");
+        delete originalContainer._updateCarouselScroll;
 
-    function scrollToIndex(i) {
-      const el = slides[i];
-      if (!el) return;
-      const target = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
-      track.scrollTo({ left: target, behavior: "smooth" });
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", (e) => {
-        e.preventDefault();
-        stopAuto();
-        scrollToIndex(i);
-        restartAutoSoon();
-      });
+      } else if (isMobile && isProcessed) {
+         // Just update scroll on resize if needed
+         if (originalContainer._updateCarouselScroll) {
+             originalContainer._updateCarouselScroll();
+         }
+      }
     });
+  };
 
+  // Run on start
+  checkAndInit();
+
+  // Run on resize
+  window.addEventListener("resize", () => {
+    setTimeout(checkAndInit, 100);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Run on load
+    initArrowCarousel();
+});
+
+
+(function () {
+  console.log("Carousel Script Loaded v4 - Distinct Strict Mode");
+
+  /**
+   * Mobile/Tablet: 3D Carousel with Swipe
+   * Mimics desktop visual logic but checks for touch events.
+   */
+  function initMobile3DCarousel(container) {
+    if (!container) return null;
+    const slides = Array.from(container.querySelectorAll(".slide"));
+    const dots = Array.from(container.querySelectorAll(".carousel-dot"));
+    const prevBtn = container.querySelector(".carousel-btn--prev");
+    const nextBtn = container.querySelector(".carousel-btn--next");
+    const track = container.querySelector(".carousel-slides");
+    
+    if (!slides.length) return null;
+
+    // Ensure clean state from any previous mode
+    container.classList.remove("carousel--snap");
+    if (track) track.style.transform = "";
+    slides.forEach(s => s.style.transform = "");
+    
+    let current = 0;
+    const total = slides.length;
     let autoTimer = null;
-    let resumeTimer = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
 
-    function nextSlide() {
-      const current = setActiveByCenter();
-      const next = (current + 1) % slides.length;
-      scrollToIndex(next);
-    }
+    const updateSlides = (index) => {
+      slides.forEach(slide => {
+        slide.classList.remove("active", "prev", "next", "is-active");
+        slide.style.transform = ""; 
+      });
+      
+      dots.forEach(dot => dot.classList.remove("active"));
+      if (dots[index]) dots[index].classList.add("active");
+
+      // Circular indices
+      const nextIndex = (index + 1) % total;
+      const prevIndex = (index - 1 + total) % total;
+
+      slides[index].classList.add("active");
+      slides[nextIndex].classList.add("next");
+      slides[prevIndex].classList.add("prev");
+
+      current = index;
+    };
+
+    const nextSlide = () => updateSlides((current + 1) % total);
+    const prevSlide = () => updateSlides((current - 1 + total) % total);
+
+    // Initial Setup
+    updateSlides(0);
+
+    // Auto-play Logic
     function startAuto() {
-      if (autoTimer) return;
-      autoTimer = setInterval(nextSlide, 3000);
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(nextSlide, 5000);
     }
+    
     function stopAuto() {
-      clearInterval(autoTimer);
+      if (autoTimer) clearInterval(autoTimer);
       autoTimer = null;
     }
-    function restartAutoSoon(delay = 4000) {
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(startAuto, delay);
+
+    function restartAuto() {
+        stopAuto();
+        setTimeout(startAuto, 5000);
     }
 
-    ["touchstart", "pointerdown", "mousedown", "keydown"].forEach((evt) => {
-      track.addEventListener(
-        evt,
-        () => {
+    startAuto();
+
+    // Event Listeners: Buttons
+    if (prevBtn) {
+        prevBtn.onclick = (e) => {
+            e.preventDefault();
+            stopAuto();
+            prevSlide();
+            restartAuto();
+        };
+    }
+    if (nextBtn) {
+        nextBtn.onclick = (e) => {
+            e.preventDefault();
+            stopAuto();
+            nextSlide();
+            restartAuto();
+        };
+    }
+    
+    dots.forEach((dot, idx) => {
+      dot.onclick = (e) => {
+          e.preventDefault();
           stopAuto();
-        },
-        { passive: true }
-      );
-    });
-    ["touchend", "pointerup", "mouseup"].forEach((evt) => {
-      track.addEventListener(
-        evt,
-        () => {
-          restartAutoSoon();
-        },
-        { passive: true }
-      );
-    });
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stopAuto();
-      else restartAutoSoon(1000);
+          updateSlides(idx);
+          restartAuto();
+      };
     });
 
-    track.addEventListener("scroll", () => requestAnimationFrame(setActiveByCenter), { passive: true });
-    window.addEventListener("resize", () => requestAnimationFrame(setActiveByCenter));
+    // Touch Support (Specific to Mobile/Tablet)
+    if (track) {
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAuto();
+        }, { passive: true });
 
-    setTimeout(() => {
-      setActiveByCenter();
-      // startAuto();
-    }, 80);
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll(".carousel-container").forEach(initMainCarouselSnap);
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            restartAuto();
+        }, { passive: true });
     }
-  });
-})();
 
-(function initWhatsAppModal() {
-  const modal = document.getElementById("unit-modal");
-  const closeBtn = document.querySelector(".unit-modal-close");
-  const unitButtons = document.querySelectorAll(".unit-btn");
-  let pendingMessage = "";
-
-  if (!modal || !closeBtn) return;
-
-  function openModal(msg) {
-    pendingMessage = msg || "";
-    modal.classList.add("active");
-  }
-
-  function closeModal() {
-    modal.classList.remove("active");
-    pendingMessage = "";
-  }
-
-  function handleWhatsAppClick(e) {
-    const link = e.currentTarget;
-    e.preventDefault();
-    
-    // Extract 'text' param if exists
-    let textParam = "";
-    try {
-        const url = new URL(link.href);
-        textParam = url.searchParams.get("text");
-    } catch(err) {
-        // Fallback if href is not a full URL (though it should be)
-    }
-    
-    openModal(textParam);
-  }
-
-  // Intercept all clicks on links containing 'wa.me' or 'api.whatsapp.com'
-  document.body.addEventListener("click", (e) => {
-    const link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
-    if (link) {
-      handleWhatsAppClick({ currentTarget: link, preventDefault: () => e.preventDefault() });
-    }
-  });
-
-  closeBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
-      closeModal();
-    }
-  });
-
-  unitButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const unit = btn.dataset.unit;
-      let phone = "";
-      
-      if (unit === "gramame") {
-        phone = "5583987731766";
-      } else if (unit === "caminho_do_sol") {
-        phone = "558321786926"; 
-      }
-
-      if (phone) {
-        let finalUrl = `https://wa.me/${phone}`;
-        if (pendingMessage) {
-          finalUrl += `?text=${encodeURIComponent(pendingMessage)}`;
+    function handleSwipe() {
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > SWIPE_THRESHOLD) {
+            if (diff > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
         }
-        window.open(finalUrl, "_blank", "noopener");
-        closeModal();
-      }
+    }
+
+    return {
+        destroy: () => {
+             clearInterval(autoTimer);
+             if (prevBtn) prevBtn.onclick = null;
+             if (nextBtn) nextBtn.onclick = null;
+             dots.forEach(d => d.onclick = null);
+             // Touch listeners are anonymous, but we clone elements in initCarousels so it's fine.
+        }
+    };
+  }
+
+  /**
+   * Desktop: Pure 3D Carousel (Restored)
+   * No mobile logic, no swipe (unless requested later).
+   */
+  function initDesktopCarousel(container) {
+    if (!container) return null;
+    const slides = Array.from(container.querySelectorAll(".slide"));
+    const dots = Array.from(container.querySelectorAll(".carousel-dot"));
+    const prevBtn = container.querySelector(".carousel-btn--prev");
+    const nextBtn = container.querySelector(".carousel-btn--next");
+    
+    if (!slides.length) return null;
+
+    container.classList.remove("carousel--snap");
+    
+    let current = 0;
+    const total = slides.length;
+    let autoTimer = null;
+
+    const updateSlides = (index) => {
+      slides.forEach(slide => {
+        slide.classList.remove("active", "prev", "next", "is-active");
+        slide.style.transform = ""; 
+      });
+      
+      dots.forEach(dot => dot.classList.remove("active"));
+      if (dots[index]) dots[index].classList.add("active");
+
+      const nextIndex = (index + 1) % total;
+      const prevIndex = (index - 1 + total) % total;
+
+      slides[index].classList.add("active");
+      slides[nextIndex].classList.add("next");
+      slides[prevIndex].classList.add("prev");
+
+      current = index;
+    };
+
+    const nextSlide = () => updateSlides((current + 1) % total);
+    const prevSlide = () => updateSlides((current - 1 + total) % total);
+
+    // Event Listeners
+    if (prevBtn) {
+        prevBtn.onclick = (e) => {
+            e.preventDefault();
+            stopAuto();
+            prevSlide();
+        };
+    }
+    if (nextBtn) {
+        nextBtn.onclick = (e) => {
+            e.preventDefault();
+            stopAuto();
+            nextSlide();
+        };
+    }
+    
+    dots.forEach((dot, idx) => {
+      dot.onclick = (e) => {
+          e.preventDefault();
+          stopAuto();
+          updateSlides(idx);
+      };
     });
+
+    function startAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+      setTimeout(startAuto, 5000);
+    }
+
+    updateSlides(0);
+    startAuto();
+
+    return {
+        destroy: () => {
+             clearInterval(autoTimer);
+             if (prevBtn) prevBtn.onclick = null;
+             if (nextBtn) nextBtn.onclick = null;
+             dots.forEach(d => d.onclick = null);
+        }
+    };
+  }
+
+  /**
+   * Main Initialization
+   */
+  function checkAndTransformInstagram() {
+    const container = document.querySelector(".instagram-container");
+    if (!container) return;
+
+    const grid = container.querySelector(".instagram-grid");
+    const carouselWrapper = container.querySelector(".instagram-carousel");
+    const isRefWidth = window.innerWidth <= 1200;
+
+    if (isRefWidth) {
+      if (!carouselWrapper && grid) {
+        // Transform
+        const newWrapper = document.createElement("div");
+        newWrapper.className = "carousel-container instagram-carousel";
+
+        const slidesTrack = document.createElement("div");
+        slidesTrack.className = "carousel-slides";
+
+        const posts = Array.from(grid.children);
+        posts.forEach((post) => {
+          const slide = document.createElement("div");
+          slide.className = "slide";
+          slide.appendChild(post);
+          slidesTrack.appendChild(slide);
+        });
+
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "carousel-btn carousel-btn--prev";
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "carousel-btn carousel-btn--next";
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+        const dots = document.createElement("div");
+        dots.className = "carousel-dots";
+        posts.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.className = "carousel-dot";
+          if (i === 0) dot.classList.add("active");
+          dots.appendChild(dot);
+        });
+
+        newWrapper.appendChild(slidesTrack);
+        newWrapper.appendChild(prevBtn);
+        newWrapper.appendChild(nextBtn);
+        newWrapper.appendChild(dots);
+
+        // Grid hidden, Wrapper added
+        grid.style.display = "none";
+        grid.insertAdjacentElement("afterend", newWrapper);
+
+        // Function to update height
+        const updateHeight = () => {
+             let maxHeight = 0;
+             const posts = newWrapper.querySelectorAll(".instagram-post");
+             posts.forEach((p) => {
+                 maxHeight = Math.max(maxHeight, p.offsetHeight);
+             });
+             
+             // Fallback if images not loaded - guess
+             if (maxHeight < 200) {
+                 maxHeight = window.innerWidth <= 576 ? 380 : 450;
+             }
+             
+             if (maxHeight > 0) {
+                 slidesTrack.style.height = (maxHeight + 20) + "px";
+             }
+        };
+
+        // Initial check
+        setTimeout(updateHeight, 100);
+        
+        // Check on load (images) and resize
+        window.addEventListener("load", updateHeight);
+        window.addEventListener("resize", () => setTimeout(updateHeight, 200));
+        
+        // ResizeObserver for robustness if content changes
+        const resizeObserver = new ResizeObserver(() => {
+            updateHeight();
+        });
+        newWrapper.querySelectorAll(".instagram-post").forEach(post => resizeObserver.observe(post));
+        
+        // Trigger immediately
+        updateHeight();
+        
+        // Allow manual trigger
+        newWrapper._updateHeight = updateHeight;
+      } else if (carouselWrapper && carouselWrapper._updateHeight) {
+          carouselWrapper._updateHeight();
+      }
+    } else {
+      // Is Desktop (> 1200px)
+      if (carouselWrapper) {
+        // Move posts back to grid
+        const slides = carouselWrapper.querySelectorAll(".slide .instagram-post");
+        slides.forEach(post => {
+            grid.appendChild(post);
+        });
+        
+        // Remove wrapper
+        carouselWrapper.remove();
+        
+        // Show grid
+        grid.style.display = "";
+    }
+  }
+  }
+
+  function initCarousels() {
+    checkAndTransformInstagram();
+    const globalWidth = window.innerWidth;
+
+      const containers = document.querySelectorAll(".carousel-container");
+      
+      containers.forEach(container => {
+          const currentMode = container.dataset.carouselMode;
+          const isInstagram = container.classList.contains("instagram-carousel");
+          const breakpoint = isInstagram ? 1200 : 992;
+          const isMobile = globalWidth <= breakpoint;
+          const targetMode = isMobile ? 'mobile' : 'desktop';
+          
+          if (currentMode === targetMode) return;
+          
+          if (container.carouselInstance) {
+              container.carouselInstance.destroy();
+              container.carouselInstance = null;
+          }
+
+          // Clone elements to strip old listeners
+          const elementsToClone = [
+              container.querySelector(".carousel-btn--prev"),
+              container.querySelector(".carousel-btn--next"),
+              container.querySelector(".carousel-slides") 
+          ];
+          
+          elementsToClone.forEach(el => {
+              if (el) el.replaceWith(el.cloneNode(true));
+          });
+
+          // Clone dots
+          const dotsWrap = container.querySelector(".carousel-dots");
+          if (dotsWrap) {
+             const dots = dotsWrap.querySelectorAll(".carousel-dot");
+             dots.forEach(d => d.replaceWith(d.cloneNode(true)));
+          }
+
+          // Initialize new mode
+          if (targetMode === 'mobile') {
+              container.carouselInstance = initMobile3DCarousel(container);
+          } else {
+              container.carouselInstance = initDesktopCarousel(container);
+          }
+          container.dataset.carouselMode = targetMode;
+      });
+  }
+
+  // Init
+  if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCarousels);
+  } else {
+      initCarousels();
+  }
+  
+  // Debounced Resize
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initCarousels, 200);
   });
 })();
+
+

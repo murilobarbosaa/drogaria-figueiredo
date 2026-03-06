@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Drogaria Figueiredo</title>
     <link href="./assets/favicon.ico" rel="icon" type="image/x-icon" />
-    <link href="styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=final6" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
     <meta
@@ -254,10 +254,17 @@
             <img src="./assets/images/logos/logo.png" alt="Drogaria Figueiredo Logo" />
           </a>
         </div>
-        <button class="hamburger" id="hamburger">
-          <i class="fas fa-bars"></i>
+        <button class="hamburger" id="hamburger" aria-label="Menu Principal">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </button>
         <ul class="nav-menu" id="nav-menu">
+          <li class="mobile-only">
+            <a href="https://wa.me/558321786926" class="whatsapp-btn-mobile" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Peça Agora!
+            </a>
+          </li>
           <li><a href="#home-carousel">Promoções</a></li>
           <li><a href="#instagram">Instagram</a></li>
           <li><a href="#services">Serviços</a></li>
@@ -269,7 +276,7 @@
             <img src="./assets/images/logos/coracao.png" alt="Coração Drogaria Figueiredo" loading="lazy" />
           </li>
         </ul>
-        <a href="https://wa.me/5583987731766" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Drogaria Figueiredo">
+        <a href="https://wa.me/558321786926" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Drogaria Figueiredo">
           <i class="fab fa-whatsapp"></i>
           Peça Agora!
         </a>
@@ -280,10 +287,10 @@
       <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="container">
-          <h2>Sua saúde é nossa prioridade</h2>
-          <p>Há anos cuidando da saúde e bem-estar das famílias de João Pessoa com produtos de qualidade e atendimento personalizado.</p>
+          <h2>Cuidar da sua saúde <br> é o que nos move todos os dias</h2>
+          <p>Oferecemos produtos de qualidade, orientação responsável e um atendimento próximo, pensado para o bem-estar das famílias de João Pessoa.</p>
           <div class="section-cta">
-            <a href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" class="btn" target="_blank" rel="noopener">Pedir no WhatsApp</a>
+            <a href="https://wa.me/558321786926?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido" class="btn" target="_blank" rel="noopener">Pedir no WhatsApp</a>
           </div>
         </div>
       </section>
@@ -329,7 +336,7 @@
         </div>
       </section>
 
-      <div class="container instagram-container" id="instagram" style="margin-top: 40px; margin-bottom: 40px;">
+      <div class="container instagram-container" id="instagram">
         <div class="instagram-grid">
           <div class="instagram-post">
             <div class="post-header">
@@ -408,49 +415,49 @@
       <section class="services" id="services">
         <div class="container">
           <div class="benefits-modern__wrap" role="list" style="margin-bottom: 40px;">
-            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20parcelamento" target="_blank" rel="noopener">
+            <a class="benefit" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20parcelamento" target="_blank" rel="noopener">
               <div class="benefit__circle"><i data-lucide="credit-card" aria-hidden="true"></i></div>
-              <h3 class="benefit__title">Parcele em 5x</h3>
-              <p class="benefit__desc">No cartão</p>
+              <h3 class="benefit__title">Parcele sem juros</h3>
+              <p class="benefit__desc">Facilidade no cartão.</p>
             </a>
 
-            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20entrega%20gratis" target="_blank" rel="noopener">
+            <a class="benefit" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20entrega%20gratis" target="_blank" rel="noopener">
               <div class="benefit__circle"><i data-lucide="truck" aria-hidden="true"></i></div>
               <h3 class="benefit__title">Entrega grátis</h3>
               <p class="benefit__desc_condition">Consulte condições</p>
             </a>
 
-            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20pagamento%20com%20pix" target="_blank" rel="noopener">
+            <a class="benefit" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20pagamento%20com%20pix" target="_blank" rel="noopener">
               <div class="benefit__circle"><i data-lucide="qr-code" aria-hidden="true"></i></div>
               <h3 class="benefit__title">Pague com Pix</h3>
               <p class="benefit__desc">Rápido e seguro</p>
             </a>
 
-            <a class="benefit" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20desconto%20em%20genericos" target="_blank" rel="noopener">
+            <a class="benefit" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20desconto%20em%20genericos" target="_blank" rel="noopener">
               <div class="benefit__circle"><i data-lucide="percent" aria-hidden="true"></i></div>
               <h3 class="benefit__title">Genéricos até 85%</h3>
               <p class="benefit__desc">De desconto</p>
             </a>
           </div>
           <div class="services-grid">
-            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20aplicacao%20de%20injetaveis" target="_blank" rel="noopener">
+            <a class="service-card" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20aplicacao%20de%20injetaveis" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fas fa-syringe"></i></div>
               <h3>Aplicação de Injetáveis</h3>
               <p>Administração de medicamentos por farmacêutico habilitado, mediante prescrição, em sala apropriada.</p>
             </a>
-            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20saber%20sobre%20recarga%20de%20passe%20legal" target="_blank" rel="noopener">
+            <a class="service-card" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20saber%20sobre%20recarga%20de%20passe%20legal" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></div>
               <h3>Recarga de Passe Legal</h3>
               <p>Faça recargas das principais operadoras direto no caixa, de forma rápida e prática.</p>
             </a>
-            <a class="service-card" href="https://wa.me/5583987731766?text=Ola,%20gostaria%20de%20fazer%20um%20pedido%20para%20entrega" target="_blank" rel="noopener">
+            <a class="service-card" href="https://wa.me/558321786926?text=Ola,%20gostaria%20de%20fazer%20um%20pedido%20para%20entrega" target="_blank" rel="noopener">
               <div class="service-icon" aria-hidden="true"><i class="fas fa-motorcycle"></i></div>
               <h3>Entrega Rápida</h3>
               <p>Receba seus produtos em casa. Consulte cobertura e horários de entrega.</p>
             </a>
           </div>
           <div class="section-cta">
-            <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20orcamento%20de%20um%20servico" target="_blank" rel="noopener">Fale Conosco</a>
+            <a class="btn" href="https://wa.me/558321786926?text=Ola,%20vim%20pelo%20site%20e%20quero%20fazer%20um%20orcamento%20de%20um%20servico" target="_blank" rel="noopener">Fale Conosco</a>
           </div>
         </div>
       </section>
@@ -506,7 +513,6 @@
                   <h3 class="unit-name">Unidade Valentina I</h3>
                   <p class="unit-address">Rua Mariângela Lucena Peixoto, 1282</p>
                   <p class="unit-phone">Tel: (83) 3237-5573</p>
-                  <p class="unit-phone">(83) 98877-0103</p>
                   <div class="unit-hours-wrapper">
                     <ul class="hours-list">
                       <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
@@ -522,7 +528,6 @@
                   <h3 class="unit-name">Unidade Valentina II</h3>
                   <p class="unit-address">R. Flodoaldo Peixoto Filho, 648</p>
                   <p class="unit-phone">Tel: (83) 3212-5573</p>
-                  <p class="unit-phone">(83) 98877-0105</p>
                   <div class="unit-hours-wrapper">
                     <ul class="hours-list">
                       <li><strong>Seg - Sab:</strong> 07:00 : 22:00</li>
@@ -568,7 +573,7 @@
           </div>
 
           <div class="section-cta">
-            <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20confirmar%20disponibilidade%20e%20horarios" target="_blank" rel="noopener">Confirmar disponibilidade</a>
+            <a class="btn" href="https://wa.me/558321786926?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20confirmar%20disponibilidade%20e%20horarios" target="_blank" rel="noopener">Confirmar disponibilidade</a>
           </div>
         </div>
       </section>
@@ -584,14 +589,14 @@
             </div>
             <div class="about-text">
               <h3>Drogaria Figueiredo</h3>
-              <p>Somos uma farmácia local comprometida com a saúde e bem-estar da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nossa drogaria oferece uma ampla variedade de produtos farmacêuticos e cosméticos com o melhor atendimento.</p>
-              <p>Contamos com uma equipe de profissionais qualificados, prontos para atender suas necessidades com atenção e cuidado. Nosso compromisso é proporcionar uma experiência de compra agradável e segura para todos os nossos clientes.</p>
-              <p>Estamos à disposição de segunda a sábado das 07h às 22h e aos domingos das 07h às 20h, sempre prontos para atendê-lo com excelência.</p>
+              <p>Mais do que uma farmácia, a Drogaria Figueiredo é parte da rotina e do cuidado com a saúde da comunidade de João Pessoa. Localizada no bairro Valentina de Figueiredo, nascemos com um propósito simples: atender bem, com atenção, confiança e proximidade.</p>
+              <p>Aqui, cada cliente é tratado pelo nome, com orientação responsável e um atendimento que vai além da venda. Oferecemos uma ampla variedade de medicamentos, produtos de higiene, beleza e cuidados diários, sempre com o suporte de uma equipe qualificada, pronta para ouvir e ajudar.</p>
+              <p>Estamos abertos de segunda a sábado, das 07h às 22h, e aos domingos, das 07h às 20h, para cuidar de você e da sua família sempre que precisar.</p>
             </div>
           </div>
         </div>
         <div class="section-cta" style="margin-top: 12px">
-          <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20duvida%20com%20o%20farmaceutico" target="_blank" rel="noopener">Falar com o farmacêutico</a>
+          <a class="btn" href="https://wa.me/558321786926?text=Ola,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20duvida%20com%20o%20farmaceutico" target="_blank" rel="noopener">Falar com o farmacêutico</a>
         </div>
       </section>
 
@@ -634,7 +639,7 @@
           </div>
 
           <div class="section-cta">
-            <a class="btn" href="https://wa.me/5583987731766?text=Ola,%20vim%20pelo%20site%20e%20quero%20atendimento%20pelo%20WhatsApp" target="_blank" rel="noopener">Quero atendimento no WhatsApp</a>
+            <a class="btn" href="https://wa.me/558321786926?text=Ola,%20vim%20pelo%20site%20e%20quero%20atendimento%20pelo%20WhatsApp" target="_blank" rel="noopener">Quero atendimento no WhatsApp</a>
           </div>
         </div>
       </section>
@@ -669,18 +674,17 @@
                   <a href="#home-carousel"><i class="fas fa-tags"></i> Promoções</a>
                 </li>
                 <li>
-                  <a href="#services"><i class="fas fa-pills"></i> Nossos Serviços</a>
-                </li>
-                <li>
                   <a href="#instagram"><i class="fab fa-instagram"></i> Instagram</a>
                 </li>
                 <li>
-                  <a href="#about"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+                  <a href="#services"><i class="fas fa-pills"></i> Nossos Serviços</a>
                 </li>
                 <li>
                   <a href="#location"><i class="fas fa-map-marker-alt"></i> Nossas Lojas</a>
                 </li>
-
+                <li>
+                  <a href="#about"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+                </li>
               </ul>
             </div>
 
@@ -693,7 +697,7 @@
                 </div>
                 <div class="contact-info">
                   <h6>Unidade Principal</h6>
-                  <p>Valentina, João Pessoa - PB</p>
+                  <p>R. Domingos José da Paixão, 1530 <br> Caminho do Sol - João Pessoa</p>
                 </div>
               </div>
 
@@ -703,7 +707,7 @@
                 </div>
                 <div class="contact-info">
                   <h6>Telefone</h6>
-                  <p>(83) 98773-1766</p>
+                  <p>(83) 2178-6926</p>
                 </div>
               </div>
 
@@ -729,7 +733,7 @@
                 <a href="https://www.threads.net/@drogariafigueiredonovomilenio" class="social-link threads" target="_blank" rel="noopener" aria-label="Threads">
                   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/threads.svg" alt="Threads" width="20" height="20" />
                 </a>
-                <a href="https://wa.me/5583987731766" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <a href="https://wa.me/558321786926" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
                   <i class="fab fa-whatsapp"></i>
                 </a>
               </div>
@@ -766,30 +770,14 @@
     </footer>
 
     <div class="floating-contact">
-      <a href="https://wa.me/5583987731766" class="floating-btn" target="_blank" rel="noopener">
+      <a href="https://wa.me/558321786926" class="floating-btn" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i>
       </a>
     </div>
 
-    <div id="unit-modal" class="unit-modal">
-      <div class="unit-modal-content">
-        <button class="unit-modal-close">&times;</button>
-        <h3>Escolha a Unidade</h3>
-        <p>Com qual unidade você deseja falar?</p>
-        <div class="unit-buttons">
-          <button class="unit-btn" data-unit="gramame">
-            <i class="fas fa-map-marker-alt"></i>
-            Unidade Gramame
-          </button>
-          <button class="unit-btn" data-unit="caminho_do_sol">
-            <i class="fas fa-map-marker-alt"></i>
-            Unidade Caminho do Sol
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <script defer src="script.js"></script>
+
+    <script defer src="script.js?v=final"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
   </body>
 </html>
